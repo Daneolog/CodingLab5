@@ -1,0 +1,2 @@
+C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\obj\x86\Debug\Coding_Lab_5Content.contentprojResolveAssemblyReference.cache
+C:\Users\Inworks-User\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\obj\x86\Debug\Coding_Lab_5Content.contentprojResolveAssemblyReference.cache
