@@ -17,7 +17,7 @@ namespace Coding_Lab_5
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         // gameplay mechanics
-        Vector2 fullWindow = new Vector2(2000f, 2000f);
+        Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(600f, 600f);
         Texture2D backgroundTexture, carrierTexture;
@@ -25,9 +25,10 @@ namespace Coding_Lab_5
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Carrier carrier = new Carrier();
+        Ship carrier = new Ship("carrier", new Vector2(9000, 5000), 90);
+        List<Ship> enemies;
         List<Projectile> bullets;
-        Projectile rocket;
+        List<Projectile> rockets;
         double bulletCooldown, rocketCooldown;
 
         public Game1()
@@ -47,11 +48,17 @@ namespace Coding_Lab_5
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            carrier.position = new Vector2(100, 100);
-
+            enemies = new List<Ship>();
             bullets = new List<Projectile>();
+            rockets = new List<Projectile>();
+
             backgroundTexture = Content.Load<Texture2D>("background");
             carrierTexture = Content.Load<Texture2D>("carrier");
+
+            // TESTING CODE (UNCOMMENT AFTER USE)
+            Ship enemy = new Ship("enemy", new Vector2(8500, 5000), 0);
+            enemies.Add(enemy);
+            // END OF TESTING CODE
 
             base.Initialize();
         }
@@ -97,11 +104,16 @@ namespace Coding_Lab_5
             #endregion
 
             #region moving
-            carrier.speed = 1.5f;
-            if (Keyboard.GetState().IsKeyDown(Keys.Up)) { carrier.angle = 270; carrier.speed = 2f; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down)) { carrier.angle = 90; carrier.speed = 2f; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right)) { carrier.angle = 0; carrier.speed = 2f; }
-            if (Keyboard.GetState().IsKeyDown(Keys.Left)) { carrier.angle = 180; carrier.speed = 2f; }
+            carrier.speed = 5f;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            { carrier.angle = 270; carrier.speed = 7f; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            { carrier.angle = 90; carrier.speed = 7f; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            { carrier.angle = 0; carrier.speed = 7f; }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            { carrier.angle = 180; carrier.speed = 7f; }
             #endregion
 
             #region shooting
@@ -113,37 +125,46 @@ namespace Coding_Lab_5
                     carrier.angle);
                 bullets.Add(bullet);
 
-                bulletCooldown = 2;
+                bulletCooldown = 0.3;
             }
 
             // shoot rocket with x key
             if (Keyboard.GetState().IsKeyDown(Keys.X) && rocketCooldown <= 0)
             {
-                rocket = new Projectile("rocket",
+                Projectile rocket = new Projectile("rocket",
                     carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10),
                     carrier.angle);
+                rockets.Add(rocket);
 
-                rocketCooldown = 10;
+                rocketCooldown = 5;
             }
+            #endregion
 
+            #region moving
             // move bullets
             for (int i=0; i<bullets.Count; i++)
             {
-                bullets[i].Update();
-                if (bullets[i].distanceTraveled >= 300) bullets.RemoveAt(i);
+                Vector2 position = bullets[i].position - window;
+
+                bullets[i].Move();
+                if (position.X + 20 <= 0 || position.X >= windowSize.X ||
+                    position.Y + 20 <= 0 || position.Y >= windowSize.Y) bullets.RemoveAt(i);
             }
 
-            // move rocket
-            if (rocket != null)
+            // move rockets
+            for (int i=0; i<rockets.Count; i++)
             {
-                rocket.Update();
-                if (rocket.distanceTraveled >= 300) rocket = null;
+                Vector2 position = rockets[i].position - window;
+
+                rockets[i].Move();
+                if (position.X + 20 <= 0 || position.X >= windowSize.X ||
+                    position.Y + 20 <= 0 || position.Y >= windowSize.Y) rockets.RemoveAt(i);
             }
             #endregion
 
             carrier.Move();
-            if (bulletCooldown > 0) bulletCooldown -= 0.1;
-            if (rocketCooldown > 0) rocketCooldown -= 0.1;
+            if (bulletCooldown > 0) bulletCooldown -= 0.03;
+            if (rocketCooldown > 0) rocketCooldown -= 0.03;
             base.Update(gameTime);
         }
 
@@ -154,7 +175,6 @@ namespace Coding_Lab_5
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            float angle = (float)(carrier.angle * Math.PI / 180);
             Rectangle backgroundRect = new Rectangle((int)-window.X, (int)-window.Y,
                 (int)(backgroundTexture.Width * Math.Ceiling(fullWindow.X / backgroundTexture.Width)),
                 (int)(backgroundTexture.Height * Math.Ceiling(fullWindow.Y / backgroundTexture.Height)));
@@ -165,72 +185,73 @@ namespace Coding_Lab_5
 
             for (int i=0; i<bullets.Count; i++)
                 spriteBatch.Draw(Content.Load<Texture2D>("bullet"), bullets[i].position - window, Color.White);
-            if (rocket != null) spriteBatch.Draw(Content.Load<Texture2D>("rocket"), rocket.position, Color.White);
+            
+            for (int i=0; i<rockets.Count; i++)
+                spriteBatch.Draw(Content.Load<Texture2D>("rocket"), rockets[i].position - window, Color.White);
 
             spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
-            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + (int)rocketCooldown,
-                new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window + new Vector2(-50, 50), Color.White);
+            spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window + new Vector2(50, 50), Color.White);
+
+            for (int i = 0; i < enemies.Count; i++)
+                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemies[i].position - window, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
     }
-
-    public class Carrier
+    
+    public class Ship
     {
+        // gameplay mechanics
+        public const int enemySpeed = 4;
+        
         public float speed;
         public Vector2 position;
         public Vector2 velocity;
-        public int angle;
+        public double angle;
 
-        public Carrier()
+        public Ship(string type, Vector2 newPosition, int newAngle)
         {
-            velocity = Vector2.Zero;
+            if (type == "enemy") speed = enemySpeed;
+            position = newPosition;
+            angle = newAngle;
         }
 
         public void Move()
         {
-            double angleInRadians = angle * Math.PI / 180;
+            double radians = angle * Math.PI / 180;
 
-            velocity = speed * new Vector2((float)Math.Cos(angleInRadians), (float)Math.Sin(angleInRadians));
+            velocity = speed * new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians));
             position += velocity;
         }
     }
-
+    
     public class Projectile
     {
         // projectile mechanics
-        public static int bulletSpeed = 5;
-        public static int rocketSpeed = 3;
+        public const int bulletSpeed = 10;
+        public const int rocketSpeed = 7;
 
-        public string type;
+        public float speed;
         public Vector2 position;
         public Vector2 velocity;
         public double angle;
-        public int distanceTraveled; // to know when to despawn
 
-        public Projectile(string newType, Vector2 newPosition, int newAngle)
+        public Projectile(string type, Vector2 newPosition, double newAngle)
         {
-            type = newType;
+            if (type == "bullet") speed = bulletSpeed;
+            else if (type == "rocket") speed = rocketSpeed;
             position = newPosition;
-            angle = newAngle * Math.PI / 180;
-            distanceTraveled = 0;
-
-            switch (type)
-            {
-                case "bullet":
-                    velocity = bulletSpeed * new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-                    break;
-                case "rocket":
-                    velocity = rocketSpeed * new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-                    break;
-            }
+            angle = newAngle;
         }
 
-        public void Update()
+        public void Move()
         {
+            double radians = angle * Math.PI / 180;
+
+            velocity = speed * new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians));
             position += velocity;
-            distanceTraveled += (int)Math.Sqrt(Math.Pow(velocity.X, 2) + Math.Pow(velocity.Y, 2));
         }
     }
 }

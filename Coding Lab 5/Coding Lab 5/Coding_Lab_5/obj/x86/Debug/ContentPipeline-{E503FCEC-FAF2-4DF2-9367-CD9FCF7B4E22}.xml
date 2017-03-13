@@ -2,31 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>bullet.png</Source>
-      <Name>bullet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
-      <Time>2017-03-10T18:24:47.7470883-07:00</Time>
-    </Item>
-    <Item>
       <Source>rocket.png</Source>
       <Name>rocket</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2017-03-10T13:40:10-07:00</Time>
-    </Item>
-    <Item>
-      <Source>carrier.png</Source>
-      <Name>carrier</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
-      <Time>2017-03-10T17:58:36.2963148-07:00</Time>
+      <Time>2017-03-13T10:22:02-06:00</Time>
     </Item>
     <Item>
       <Source>background.png</Source>
@@ -35,7 +17,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2017-03-10T17:02:48.6284406-07:00</Time>
+      <Time>2017-03-13T10:22:02-06:00</Time>
+    </Item>
+    <Item>
+      <Source>carrier.png</Source>
+      <Name>carrier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-03-13T10:22:02-06:00</Time>
+    </Item>
+    <Item>
+      <Source>bullet.png</Source>
+      <Name>bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Time>2017-03-13T10:22:02-06:00</Time>
     </Item>
     <Item>
       <Source>GameFont.spritefont</Source>
@@ -44,7 +44,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2017-03-10T18:44:09.4192802-07:00</Time>
+      <Time>2017-03-13T10:22:02-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
