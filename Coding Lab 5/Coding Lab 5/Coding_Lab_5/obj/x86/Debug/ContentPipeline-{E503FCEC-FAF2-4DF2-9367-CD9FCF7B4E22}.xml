@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2017-03-13T10:22:02-06:00</Time>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2017-03-13T17:33:42.6170598-06:00</Time>
     </Item>
     <Item>
       <Source>background.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2017-03-13T10:22:02-06:00</Time>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2017-03-13T17:33:42.6210603-06:00</Time>
     </Item>
     <Item>
       <Source>carrier.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
-      <Time>2017-03-13T10:22:02-06:00</Time>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-03-13T17:33:42.6130599-06:00</Time>
     </Item>
     <Item>
       <Source>bullet.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
-      <Time>2017-03-13T10:22:02-06:00</Time>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Time>2017-03-13T17:33:42.6050645-06:00</Time>
     </Item>
     <Item>
       <Source>GameFont.spritefont</Source>
@@ -43,7 +43,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
       <Time>2017-03-13T10:22:02-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -53,10 +53,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
