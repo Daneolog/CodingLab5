@@ -40,24 +40,43 @@ namespace Coding_Lab_5
 
         }
 
-        public bool collide(Ship projectile, Ship ship)
+        public bool collide(Ship carrier, Ship enemy)
         {
-            return projectile.position.X <= ship.position.X + 50 &&
-                projectile.position.X + 50 >= ship.position.X &&
-                projectile.position.Y <= ship.position.Y + 50 &&
-                projectile.position.Y + 50 >= ship.position.Y;
+            return carrier.position.X <= enemy.position.X + 50 &&
+                carrier.position.X + 50 >= enemy.position.X &&
+                carrier.position.Y <= enemy.position.Y + 50 &&
+                carrier.position.Y + 50 >= enemy.position.Y;
 
+        }
+
+        public double distance(Projectile projectile, Ship ship)
+        {
+            return Math.Sqrt(Math.Pow(projectile.position.X - ship.position.X, 2) +
+                Math.Pow(projectile.position.Y - ship.position.Y, 2));
+        }
+
+        public double angle(Projectile projectile, Ship ship)
+        {
+            double x = ship.position.X + 25 - projectile.position.X - 16;
+            double y = -(ship.position.Y + 25 - projectile.position.Y - 10);
+
+            double angle = Math.Atan2(y, x) * 180 / Math.PI;
+            if (angle < 0) angle += 360;
+
+            return angle;
         }
 
         // gameplay mechanics
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
-        Vector2 windowSize = new Vector2(600f, 600f);
-        Texture2D backgroundTexture, carrierTexture;
+        Vector2 windowSize = new Vector2(800f, 600f);
+        int homingPower = 1;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D backgroundTexture, carrierTexture;
+        Ship closestEnemy;
         Ship carrier;
         List<Ship> enemies;
         List<Projectile> bullets;
@@ -91,7 +110,7 @@ namespace Coding_Lab_5
             carrierTexture = Content.Load<Texture2D>("carrier");
 
             // TESTING CODE (UNCOMMENT AFTER USE)
-            Ship enemy = new Ship("enemy", new Vector2(9000, 4000), 0);
+            Ship enemy = new Ship("enemy", new Vector2(9300, 4000), 0);
             enemies.Add(enemy);
             // END OF TESTING CODE
 
@@ -189,6 +208,21 @@ namespace Coding_Lab_5
                 {
                     Vector2 position = rockets[i].position - window;
 
+                    for (int j = 0; j < enemies.Count; j++)
+                    {
+                        if (closestEnemy == null) closestEnemy = enemies[j];
+                        else if (distance(rockets[i], enemies[j]) < distance(rockets[i], closestEnemy))
+                            closestEnemy = enemies[j];
+                    }
+
+                    if (enemies.Count > 0)
+                    {
+                        Console.WriteLine(rockets[i].angle + " trying to get to " + angle(rockets[i], closestEnemy));
+
+                        if (rockets[i].angle < angle(rockets[i], closestEnemy)) rockets[i].angle += homingPower;
+                        else if (rockets[i].angle > angle(rockets[i], closestEnemy)) rockets[i].angle -= homingPower;
+                    }
+
                     rockets[i].Move();
                     if (position.X + 20 <= 0 || position.X >= windowSize.X ||
                         position.Y + 20 <= 0 || position.Y >= windowSize.Y) rockets.RemoveAt(i);
@@ -207,6 +241,16 @@ namespace Coding_Lab_5
                         if (i < enemies.Count && j < bullets.Count && collide(bullets[j], enemies[i]))
                         {
                             bullets.RemoveAt(j);
+                            enemies.RemoveAt(i);
+                        }
+                    }
+
+                    // enemy vs rocket
+                    for (int j = 0; j < rockets.Count; j++)
+                    {
+                        if (i < enemies.Count && j < rockets.Count && collide(rockets[j], enemies[i]))
+                        {
+                            rockets.RemoveAt(j);
                             enemies.RemoveAt(i);
                         }
                     }
