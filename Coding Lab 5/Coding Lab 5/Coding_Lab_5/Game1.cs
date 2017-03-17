@@ -73,6 +73,9 @@ namespace Coding_Lab_5
         Vector2 windowSize = new Vector2(800f, 600f);
         int homingPower = 2;
         int chargeTime = 5;
+        static Random rnd = new Random();
+        int NStarLimit = 6000;
+        int FStarLimit = 7000;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
@@ -86,6 +89,8 @@ namespace Coding_Lab_5
         int gunState = 1; // 1: regular gun, 2: rocket, 3: assault rifle, 4: laser.  planning to add 5: tractor beam?
         double[] cooldowns;
         double laserCharge;
+        List<Vector2> Nstars;
+        List<Vector2> Fstars;
 
         public Game1()
         {
@@ -108,9 +113,19 @@ namespace Coding_Lab_5
             enemies = new List<Ship>();
             bullets = new List<Projectile>();
             cooldowns = new double[4];
+            Nstars = new List<Vector2>();
+            Fstars = new List<Vector2>();
 
-            backgroundTexture = Content.Load<Texture2D>("background");
             carrierTexture = Content.Load<Texture2D>("carrier");
+            
+            for (int c = 0; c < NStarLimit; c++)
+            {
+                Nstars.Add(new Vector2(rnd.Next(0, (int)fullWindow.X), rnd.Next(0, (int)fullWindow.Y)));
+            }
+            for (int c = 0; c < FStarLimit; c++)
+            {
+                Fstars.Add(new Vector2(rnd.Next(0, (int)fullWindow.X), rnd.Next(0, (int)fullWindow.Y)));
+            }
 
             // TESTING CODE (UNCOMMENT AFTER USE)
             Ship enemy1 = new Ship("enemy", new Vector2(9300, 4000), 0);
@@ -315,6 +330,9 @@ namespace Coding_Lab_5
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            //draw stars
+            foreach (Vector2 position in Nstars) spriteBatch.Draw(Content.Load<Texture2D>("NearStar"), position - window, Color.White);
+            foreach (Vector2 position in Fstars) spriteBatch.Draw(Content.Load<Texture2D>("FarStar"), position - window, Color.White);
 
             spriteBatch.Draw(Content.Load<Texture2D>("background"), backgroundRect, Color.White);
 
