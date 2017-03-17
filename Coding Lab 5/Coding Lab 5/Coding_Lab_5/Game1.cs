@@ -70,7 +70,7 @@ namespace Coding_Lab_5
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(800f, 600f);
-        int homingPower = 1;
+        int homingPower = 2;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
@@ -80,9 +80,9 @@ namespace Coding_Lab_5
         Ship carrier;
         List<Ship> enemies;
         List<Projectile> bullets;
-        List<Projectile> rockets;
-        double bulletCooldown, rocketCooldown;
         int state = 1; // 1: alive in main map, 2: dead in main map, 3: alive in minimap, 4: dead in minimap
+        int gunState = 1; // 1: regular gun, 2: rocket, 3: assault rifle, 4: laser.  planning to add 5: tractor beam?
+        double[] cooldowns;
 
         public Game1()
         {
@@ -104,7 +104,7 @@ namespace Coding_Lab_5
             carrier = new Ship("carrier", new Vector2(9000, 5000), 90);
             enemies = new List<Ship>();
             bullets = new List<Projectile>();
-            rockets = new List<Projectile>();
+            cooldowns = new double[4];
 
             backgroundTexture = Content.Load<Texture2D>("background");
             carrierTexture = Content.Load<Texture2D>("carrier");
@@ -170,25 +170,40 @@ namespace Coding_Lab_5
 
                 #region shooting
                 // shoot bullet with z key
-                if (Keyboard.GetState().IsKeyDown(Keys.Z) && bulletCooldown <= 0)
-                {
-                    Projectile bullet = new Projectile("bullet",
-                        carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10),
-                        carrier.angle);
-                    bullets.Add(bullet);
+                if (Keyboard.GetState().IsKeyDown(Keys.Space)) {
+                    if (gunState == 1 && cooldowns[gunState - 1] <= 0)
+                    {
+                        Projectile bullet = new Projectile("bullet",
+                            carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10),
+                            carrier.angle);
+                        bullets.Add(bullet);
 
-                    bulletCooldown = 0.5;
-                }
+                        cooldowns[gunState - 1] = 0.5;
+                    }
+                    else if (gunState == 2 && cooldowns[gunState - 1] <= 0)
+                    {
+                        Projectile rocket = new Projectile("rocket",
+                            carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10),
+                            carrier.angle);
+                        bullets.Add(rocket);
 
-                // shoot rocket with x key
-                if (Keyboard.GetState().IsKeyDown(Keys.X) && rocketCooldown <= 0)
-                {
-                    Projectile rocket = new Projectile("rocket",
-                        carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10),
-                        carrier.angle);
-                    rockets.Add(rocket);
+                        cooldowns[gunState - 1] = 5;
+                    }
+                    else if (gunState == 3 && cooldowns[gunState - 1] <= 0)
+                    {
+                        Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10);
+                        double angle = carrier.angle;
+                      
+                        Projectile bullet1 = new Projectile("bullet", position, angle - 10);
+                        Projectile bullet2 = new Projectile("bullet", position, angle);
+                        Projectile bullet3 = new Projectile("bullet", position, angle + 10);
 
-                    rocketCooldown = 5;
+                        bullets.Add(bullet1);
+                        bullets.Add(bullet2);
+                        bullets.Add(bullet3);
+
+                        cooldowns[gunState - 1] = 1;
+                    }
                 }
                 #endregion
 
@@ -197,35 +212,28 @@ namespace Coding_Lab_5
                 for (int i = 0; i < bullets.Count; i++)
                 {
                     Vector2 position = bullets[i].position - window;
+                    
+                    //if (bullets[i].type == "rocket") // home rockets
+                    //{
+                    //    for (int j = 0; j < enemies.Count; j++)
+                    //    {
+                    //        if (closestEnemy == null) closestEnemy = enemies[j];
+                    //        else if (distance(bullets[i], enemies[j]) < distance(bullets[i], closestEnemy))
+                    //            closestEnemy = enemies[j];
+                    //    }
+
+                    //    if (enemies.Count > 0)
+                    //    {
+                    //        if (bullets[i].angle < angle(bullets[i], closestEnemy)) bullets[i].angle += homingPower;
+                    //        else if (bullets[i].angle > angle(bullets[i], closestEnemy)) bullets[i].angle -= homingPower;
+
+                    //        Console.WriteLine(bullets[i].angle + " going to " + angle(bullets[i], closestEnemy));
+                    //    }
+                    //}
 
                     bullets[i].Move();
                     if (position.X + 20 <= 0 || position.X >= windowSize.X ||
                         position.Y + 20 <= 0 || position.Y >= windowSize.Y) bullets.RemoveAt(i);
-                }
-
-                // move rockets
-                for (int i = 0; i < rockets.Count; i++)
-                {
-                    Vector2 position = rockets[i].position - window;
-
-                    for (int j = 0; j < enemies.Count; j++)
-                    {
-                        if (closestEnemy == null) closestEnemy = enemies[j];
-                        else if (distance(rockets[i], enemies[j]) < distance(rockets[i], closestEnemy))
-                            closestEnemy = enemies[j];
-                    }
-
-                    if (enemies.Count > 0)
-                    {
-                        Console.WriteLine(rockets[i].angle + " trying to get to " + angle(rockets[i], closestEnemy));
-
-                        if (rockets[i].angle < angle(rockets[i], closestEnemy)) rockets[i].angle += homingPower;
-                        else if (rockets[i].angle > angle(rockets[i], closestEnemy)) rockets[i].angle -= homingPower;
-                    }
-
-                    rockets[i].Move();
-                    if (position.X + 20 <= 0 || position.X >= windowSize.X ||
-                        position.Y + 20 <= 0 || position.Y >= windowSize.Y) rockets.RemoveAt(i);
                 }
                 #endregion
 
@@ -245,23 +253,18 @@ namespace Coding_Lab_5
                         }
                     }
 
-                    // enemy vs rocket
-                    for (int j = 0; j < rockets.Count; j++)
-                    {
-                        if (i < enemies.Count && j < rockets.Count && collide(rockets[j], enemies[i]))
-                        {
-                            rockets.RemoveAt(j);
-                            enemies.RemoveAt(i);
-                        }
-                    }
-
                     // enemy vs asteroid
                 }
                 #endregion
 
+                if (Keyboard.GetState().IsKeyDown(Keys.D1)) gunState = 1;
+                else if (Keyboard.GetState().IsKeyDown(Keys.D2)) gunState = 2;
+                else if (Keyboard.GetState().IsKeyDown(Keys.D3)) gunState = 3;
+                else if (Keyboard.GetState().IsKeyDown(Keys.D4)) gunState = 4;
+
                 carrier.Move();
-                if (bulletCooldown > 0) bulletCooldown -= 0.03;
-                if (rocketCooldown > 0) rocketCooldown -= 0.03;
+
+                for (int i = 0; i < cooldowns.Length; i++) cooldowns[i] -= 0.03;
             }
             else if (state == 2)
             {
@@ -300,12 +303,18 @@ namespace Coding_Lab_5
                 spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemies[i].position - window, Color.White);
 
             // draw bullets
-            for (int i=0; i<bullets.Count; i++)
-                spriteBatch.Draw(Content.Load<Texture2D>("bullet"), bullets[i].position - window, Color.White);
-            
-            // draw rockets
-            for (int i=0; i<rockets.Count; i++)
-                spriteBatch.Draw(Content.Load<Texture2D>("rocket"), rockets[i].position - window, Color.White);
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                Texture2D texture;
+
+                if (bullets[i].type == "bullet") texture = Content.Load<Texture2D>("bullet");
+                else if (bullets[i].type == "rocket") texture = Content.Load<Texture2D>("rocket");
+                else texture = Content.Load<Texture2D>("bullet");
+
+                spriteBatch.Draw(texture, bullets[i].position - window, Color.White);
+            }
+
+            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
 
             if (state == 2)
             {
@@ -371,6 +380,7 @@ namespace Coding_Lab_5
 
         public void Move()
         {
+            if (angle < 0) angle += 360;
             double radians = angle * Math.PI / 180;
 
             velocity = speed * new Vector2((float)Math.Cos(radians), (float)-Math.Sin(radians));
