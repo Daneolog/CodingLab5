@@ -24,6 +24,7 @@ namespace Coding_Lab_5
             {
                 case "bullet": pSize = new Vector2(8, 20); break;
                 case "rocket": pSize = new Vector2(8, 20); break;
+                case "laser": pSize = new Vector2(20, windowSize.Y / 2); break;
                 default: pSize = Vector2.Zero; break;
             }
 
@@ -71,6 +72,7 @@ namespace Coding_Lab_5
         Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(800f, 600f);
         int homingPower = 2;
+        int chargeTime = 5;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
@@ -83,6 +85,7 @@ namespace Coding_Lab_5
         int state = 1; // 1: alive in main map, 2: dead in main map, 3: alive in minimap, 4: dead in minimap
         int gunState = 1; // 1: regular gun, 2: rocket, 3: assault rifle, 4: laser.  planning to add 5: tractor beam?
         double[] cooldowns;
+        double laserCharge;
 
         public Game1()
         {
@@ -110,8 +113,10 @@ namespace Coding_Lab_5
             carrierTexture = Content.Load<Texture2D>("carrier");
 
             // TESTING CODE (UNCOMMENT AFTER USE)
-            Ship enemy = new Ship("enemy", new Vector2(9300, 4000), 0);
-            enemies.Add(enemy);
+            Ship enemy1 = new Ship("enemy", new Vector2(9300, 4000), 0);
+            Ship enemy2 = new Ship("enemy", new Vector2(9300, 4100), 0);
+            enemies.Add(enemy1);
+            enemies.Add(enemy2);
             // END OF TESTING CODE
 
             base.Initialize();
@@ -169,8 +174,9 @@ namespace Coding_Lab_5
                 #endregion
 
                 #region shooting
-                // shoot bullet with z key
-                if (Keyboard.GetState().IsKeyDown(Keys.Space)) {
+                // shoot bullet
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
                     if (gunState == 1 && cooldowns[gunState - 1] <= 0)
                     {
                         Projectile bullet = new Projectile("bullet",
@@ -193,7 +199,7 @@ namespace Coding_Lab_5
                     {
                         Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10);
                         double angle = carrier.angle;
-                      
+
                         Projectile bullet1 = new Projectile("bullet", position, angle - 10);
                         Projectile bullet2 = new Projectile("bullet", position, angle);
                         Projectile bullet3 = new Projectile("bullet", position, angle + 10);
@@ -204,7 +210,25 @@ namespace Coding_Lab_5
 
                         cooldowns[gunState - 1] = 1;
                     }
+                    else if (gunState == 4 && cooldowns[gunState - 1] <= 0)
+                    {
+                        Vector2 position = window + new Vector2(windowSize.X / 2 + 15, 0);
+                        double angle = carrier.angle;
+
+                        Projectile laser = new Projectile("laser", position, angle);
+
+                        laserCharge += 0.1;
+
+                        if (laserCharge >= chargeTime)
+                        {
+                            bullets.Add(laser);
+                            laserCharge = 0;
+
+                            cooldowns[gunState - 1] = 10;
+                        }
+                    }
                 }
+                else laserCharge = 0;
                 #endregion
 
                 #region moving
@@ -232,8 +256,12 @@ namespace Coding_Lab_5
                     //}
 
                     bullets[i].Move();
-                    if (position.X + 20 <= 0 || position.X >= windowSize.X ||
-                        position.Y + 20 <= 0 || position.Y >= windowSize.Y) bullets.RemoveAt(i);
+                    if (bullets[i].type == "bullet" && (position.X + 8 <= 0 || position.X >= windowSize.X ||
+                        position.Y + 20 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
+                    else if (bullets[i].type == "rocket" && (position.X + 32 <= 0 || position.X >= windowSize.X ||
+                        position.Y + 20 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
+                    else if (bullets[i].type == "laser" && (position.X + 20 <= 0 || position.X >= windowSize.X ||
+                        position.Y + 20 <= 0 || position.Y + 300 >= windowSize.Y)) bullets.RemoveAt(i);
                 }
                 #endregion
 
@@ -248,7 +276,7 @@ namespace Coding_Lab_5
                     {
                         if (i < enemies.Count && j < bullets.Count && collide(bullets[j], enemies[i]))
                         {
-                            bullets.RemoveAt(j);
+                            if (bullets[j].type != "laser") bullets.RemoveAt(j);
                             enemies.RemoveAt(i);
                         }
                     }
@@ -294,8 +322,6 @@ namespace Coding_Lab_5
             if (state == 1)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window + new Vector2(-50, 50), Color.White);
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window + new Vector2(50, 50), Color.White);
             }
 
             // draw enemy ships
@@ -309,12 +335,14 @@ namespace Coding_Lab_5
 
                 if (bullets[i].type == "bullet") texture = Content.Load<Texture2D>("bullet");
                 else if (bullets[i].type == "rocket") texture = Content.Load<Texture2D>("rocket");
+                else if (bullets[i].type == "laser") texture = Content.Load<Texture2D>("laser");
                 else texture = Content.Load<Texture2D>("bullet");
 
                 spriteBatch.Draw(texture, bullets[i].position - window, Color.White);
             }
 
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
+            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
 
             if (state == 2)
             {
@@ -376,6 +404,7 @@ namespace Coding_Lab_5
 
             if (type == "bullet") speed = bulletSpeed;
             else if (type == "rocket") speed = rocketSpeed;
+            else if (type == "laser") speed = 20;
         }
 
         public void Move()
