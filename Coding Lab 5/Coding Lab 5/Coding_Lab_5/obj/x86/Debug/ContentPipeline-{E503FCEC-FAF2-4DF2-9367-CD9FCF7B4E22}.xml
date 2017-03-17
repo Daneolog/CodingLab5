@@ -46,15 +46,6 @@
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
       <Time>2017-03-13T10:22:02-06:00</Time>
     </Item>
-    <Item>
-      <Source>laser.png</Source>
-      <Name>laser</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2017-03-16T22:05:15.7620979-06:00</Time>
-    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{E503FCEC-FAF2-4DF2-9367-CD9FCF7B4E22}</ContentProjectGUID>

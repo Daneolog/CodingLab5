@@ -80,4 +80,3 @@ C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_L
 C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.exe
 C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
-C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb

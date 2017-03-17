@@ -3,4 +3,3 @@ Content\background.xnb
 Content\carrier.xnb
 Content\bullet.xnb
 Content\GameFont.xnb
-Content\laser.xnb
