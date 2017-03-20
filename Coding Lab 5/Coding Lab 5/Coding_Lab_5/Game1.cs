@@ -119,7 +119,7 @@ namespace Coding_Lab_5
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(700f, 700f);
-        float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2, laserCooldown = 10;
+        float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2f, laserCooldown = 10;
         int carrierSpeed = 5;
         int homingPower = 2;
         int chargeTime = 5;
