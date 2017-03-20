@@ -3,3 +3,8 @@ Content\background.xnb
 Content\carrier.xnb
 Content\bullet.xnb
 Content\GameFont.xnb
+Content\laser.xnb
+Content\asteroid1.xnb
+Content\asteroid2.xnb
+Content\asteroid3.xnb
+Content\asteroid4.xnb

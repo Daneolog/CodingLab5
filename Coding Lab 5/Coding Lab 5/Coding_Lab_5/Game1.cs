@@ -41,6 +41,34 @@ namespace Coding_Lab_5
 
         }
 
+        public bool collide(Projectile projectile, Asteroid asteroid)
+        {
+            Vector2 pSize;
+
+            switch (projectile.type)
+            {
+                case "bullet": pSize = new Vector2(8, 20); break;
+                case "rocket": pSize = new Vector2(8, 20); break;
+                case "laser": pSize = new Vector2(20, windowSize.Y / 2); break;
+                default: pSize = Vector2.Zero; break;
+            }
+
+            return projectile.position.X <= asteroid.position.X + 32 &&
+                projectile.position.X + pSize.X >= asteroid.position.X &&
+                projectile.position.Y <= asteroid.position.Y + 32 &&
+                projectile.position.Y + pSize.Y >= asteroid.position.Y;
+
+        }
+
+        public bool collide(Asteroid asteroid, Ship ship)
+        {
+            return asteroid.position.X <= ship.position.X + 50 &&
+                asteroid.position.X + 32 >= ship.position.X &&
+                asteroid.position.Y <= ship.position.Y + 50 &&
+                asteroid.position.Y + 32 >= ship.position.Y;
+
+        }
+
         public bool collide(Ship carrier, Ship enemy)
         {
             return carrier.position.X <= enemy.position.X + 50 &&
@@ -73,15 +101,19 @@ namespace Coding_Lab_5
         Vector2 windowSize = new Vector2(800f, 600f);
         int homingPower = 2;
         int chargeTime = 5;
+        int numEnemies = 200;
+        int numAsteroids = 900;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Random randomizer = new Random();
         Texture2D backgroundTexture, carrierTexture;
         Ship closestEnemy;
         Ship carrier;
-        List<Ship> enemies;
         List<Projectile> bullets;
+        List<Ship> enemies;
+        List<Asteroid> asteroids;
         int state = 1; // 1: alive in main map, 2: dead in main map, 3: alive in minimap, 4: dead in minimap
         int gunState = 1; // 1: regular gun, 2: rocket, 3: assault rifle, 4: laser.  planning to add 5: tractor beam?
         double[] cooldowns;
@@ -105,18 +137,36 @@ namespace Coding_Lab_5
         {
             // TODO: Add your initialization logic here
             carrier = new Ship("carrier", new Vector2(9000, 5000), 90);
-            enemies = new List<Ship>();
             bullets = new List<Projectile>();
+            enemies = new List<Ship>();
+            asteroids = new List<Asteroid>();
             cooldowns = new double[4];
 
             backgroundTexture = Content.Load<Texture2D>("background");
             carrierTexture = Content.Load<Texture2D>("carrier");
 
-            // TESTING CODE (UNCOMMENT AFTER USE)
-            Ship enemy1 = new Ship("enemy", new Vector2(9300, 4000), 0);
-            Ship enemy2 = new Ship("enemy", new Vector2(9300, 4100), 0);
-            enemies.Add(enemy1);
-            enemies.Add(enemy2);
+            for (int i=0; i<numEnemies; i++)
+            {
+                Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y));
+                int multiplier = randomizer.Next(0, 8);
+
+                Ship enemy = new Ship("enemy", position, multiplier * 45);
+                enemies.Add(enemy);
+            }
+
+            for (int i=0; i<numAsteroids; i++)
+            {
+                Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y));
+
+                Asteroid asteroid = new Asteroid(position, randomizer.Next(1, 4));
+                asteroids.Add(asteroid);
+            }
+
+            // TESTING CODE (COMMENT AFTER USE)
+            //Ship enemy1 = new Ship("enemy", new Vector2(9300, 4000), 0);
+            //Ship enemy2 = new Ship("enemy", new Vector2(9300, 4100), 0);
+            //enemies.Add(enemy1);
+            //enemies.Add(enemy2);
             // END OF TESTING CODE
 
             base.Initialize();
@@ -268,7 +318,7 @@ namespace Coding_Lab_5
                 #region collisions
                 for (int i = 0; i < enemies.Count; i++)
                 {
-                    // carrier vs enemy
+                    // enemy vs player
                     if (collide(carrier, enemies[i])) state = 2;
 
                     // enemy vs bullet
@@ -282,6 +332,30 @@ namespace Coding_Lab_5
                     }
 
                     // enemy vs asteroid
+                    for (int j = 0; j < asteroids.Count; j++)
+                    {
+                        if (i < enemies.Count && j < asteroids.Count && collide(asteroids[j], enemies[i]))
+                        {
+                            asteroids.RemoveAt(j);
+                            enemies.RemoveAt(i);
+                        }
+                    }
+                }
+                
+                for (int i = 0; i < asteroids.Count; i++)
+                {
+                    // asteroid vs player
+                    if (collide(asteroids[i], carrier)) state = 2;
+
+                    // asteroid vs bullet
+                    for (int j = 0; j < bullets.Count; j++)
+                    {
+                        if (i < asteroids.Count && j < bullets.Count && collide(bullets[j], asteroids[i]))
+                        {
+                            bullets.RemoveAt(j);
+                            asteroids.RemoveAt(i);
+                        }
+                    }
                 }
                 #endregion
 
@@ -328,6 +402,22 @@ namespace Coding_Lab_5
             for (int i = 0; i < enemies.Count; i++)
                 spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemies[i].position - window, Color.White);
 
+            // draw asteroids
+            for (int i = 0; i < asteroids.Count; i++)
+            {
+                Texture2D texture;
+
+                switch (asteroids[i].type)
+                {
+                    case 1: texture = Content.Load<Texture2D>("asteroid1"); break;
+                    case 2: texture = Content.Load<Texture2D>("asteroid2"); break;
+                    case 3: texture = Content.Load<Texture2D>("asteroid3"); break;
+                    default: texture = Content.Load<Texture2D>("asteroid4"); break;
+                }
+
+                spriteBatch.Draw(texture, asteroids[i].position - window, Color.White);
+            }
+
             // draw bullets
             for (int i = 0; i < bullets.Count; i++)
             {
@@ -346,7 +436,7 @@ namespace Coding_Lab_5
 
             if (state == 2)
             {
-                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "enemy x u", new Vector2(100, 100), Color.White);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
             }
 
             spriteBatch.End();
@@ -414,6 +504,18 @@ namespace Coding_Lab_5
 
             velocity = speed * new Vector2((float)Math.Cos(radians), (float)-Math.Sin(radians));
             position += velocity;
+        }
+    }
+
+    public class Asteroid
+    {
+        public Vector2 position;
+        public int type;
+
+        public Asteroid(Vector2 newPosition, int newType)
+        {
+            position = newPosition;
+            type = newType;
         }
     }
 }
