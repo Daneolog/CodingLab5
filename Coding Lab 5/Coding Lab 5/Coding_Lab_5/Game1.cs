@@ -118,7 +118,7 @@ namespace Coding_Lab_5
         // gameplay mechanics
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
-        Vector2 windowSize = new Vector2(800f, 600f);
+        Vector2 windowSize = new Vector2(700f, 700f);
         float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2, laserCooldown = 10;
         int homingPower = 2;
         int chargeTime = 5;
@@ -131,12 +131,18 @@ namespace Coding_Lab_5
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Random randomizer = new Random();
+        #region state 1 variables
         Texture2D carrierTexture;
         Ship closestEnemy;
         Ship carrier;
         List<Projectile> bullets;
         List<Ship> enemies;
         List<Asteroid> asteroids;
+        Vector2 mapPosition; // used when going into minimap
+        #endregion
+        #region state 2 variables
+        int currentSide; // 1 for right, 2 for top, 3 for left and 4 for bottom
+        #endregion
         List<Vector2> nStars;
         List<Vector2> fStars;
         int state = 1;
@@ -226,6 +232,7 @@ namespace Coding_Lab_5
                 this.Exit();
 
             // TODO: Add your update logic here
+            #region state 1
             if (state == 1)
             {
                 #region panning
@@ -389,10 +396,20 @@ namespace Coding_Lab_5
                 foreach (Ship enemy in enemies) enemy.Move();
                 for (int i = 0; i < cooldowns.Length; i++) cooldowns[i] -= 0.03;
             }
+            #endregion
             else if (state == 2)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Z) || Keyboard.GetState().IsKeyDown(Keys.X)) state = 1;
+                if (Keyboard.GetState().IsKeyDown(Keys.Space)) state = 1;
             }
+            #region state 3
+            else if (state == 3)
+            {
+                carrier.angle = currentSide * 90;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                    
+            }
+            #endregion
 
             base.Update(gameTime);
         }
@@ -412,11 +429,18 @@ namespace Coding_Lab_5
             foreach (Vector2 position in nStars) spriteBatch.Draw(Content.Load<Texture2D>("NearStar"), position - window, Color.White);
             foreach (Vector2 position in fStars) spriteBatch.Draw(Content.Load<Texture2D>("FarStar"), position - window, Color.White);
 
-            // draw formation ships
+            // draw carrier
+            spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
+
+            // draw bullets
+            foreach (Projectile bullet in bullets)
+                spriteBatch.Draw(Content.Load<Texture2D>(bullet.type), bullet.position - window, Color.White);
+
+            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
+            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
+            
             if (state == 1)
             {
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
-
                 // draw enemy ships
                 foreach (Ship enemy in enemies)
                     spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemy.position - window, Color.White);
@@ -426,17 +450,13 @@ namespace Coding_Lab_5
                     spriteBatch.Draw(Content.Load<Texture2D>("asteroid" + (asteroid.type + 1)),
                         asteroid.position - window, Color.White);
             }
-
-            // draw bullets
-            foreach (Projectile bullet in bullets)
-                spriteBatch.Draw(Content.Load<Texture2D>(bullet.type), bullet.position - window, Color.White);
-
-            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
-            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
-
-            if (state == 2)
+            else if (state == 2)
             {
                 spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
+            }
+            else if (state == 3)
+            {
+                spriteBatch.Draw(Content.Load<Texture2D>)
             }
 
             spriteBatch.End();
