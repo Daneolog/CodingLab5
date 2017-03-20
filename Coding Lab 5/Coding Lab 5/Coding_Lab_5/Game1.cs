@@ -1,3 +1,21 @@
+/***********************************
+ * DOCUMENTATION
+ * 
+ * States list:
+ * 1: alive in main map
+ * 2: dead in main map
+ * 3: alive in minimap
+ * 4: dead in minimap
+ * 5: pausing in any map
+ * 
+ * Guns list:
+ * 1: regular gun
+ * 2: rocket
+ * 3: assault rifle
+ * 4: laser.
+ * planning to add 5: tractor beam?
+ ***********************************/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +34,7 @@ namespace Coding_Lab_5
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        #region gameplay functions
         public bool collide(Projectile projectile, Ship ship)
         {
             Vector2 pSize, sSize;
@@ -94,28 +113,34 @@ namespace Coding_Lab_5
 
             return angle;
         }
+        #endregion
 
         // gameplay mechanics
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(800f, 600f);
+        float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2, laserCooldown = 10;
         int homingPower = 2;
         int chargeTime = 5;
-        int numEnemies = 200;
-        int numAsteroids = 900;
+        int numEnemies = 500;
+        int numAsteroids = 1000;
+        int numNearStars = 6000;
+        int numFarStars = 7000;
 
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Random randomizer = new Random();
-        Texture2D backgroundTexture, carrierTexture;
+        Texture2D carrierTexture;
         Ship closestEnemy;
         Ship carrier;
         List<Projectile> bullets;
         List<Ship> enemies;
         List<Asteroid> asteroids;
-        int state = 1; // 1: alive in main map, 2: dead in main map, 3: alive in minimap, 4: dead in minimap
-        int gunState = 1; // 1: regular gun, 2: rocket, 3: assault rifle, 4: laser.  planning to add 5: tractor beam?
+        List<Vector2> nStars;
+        List<Vector2> fStars;
+        int state = 1;
+        int gunState = 1;
         double[] cooldowns;
         double laserCharge;
 
@@ -140,34 +165,30 @@ namespace Coding_Lab_5
             bullets = new List<Projectile>();
             enemies = new List<Ship>();
             asteroids = new List<Asteroid>();
+            nStars = new List<Vector2>();
+            fStars = new List<Vector2>();
             cooldowns = new double[4];
 
-            backgroundTexture = Content.Load<Texture2D>("background");
             carrierTexture = Content.Load<Texture2D>("carrier");
 
-            for (int i=0; i<numEnemies; i++)
+            for (int i=0; i<numNearStars; i++) nStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
+            for (int i=0; i<numFarStars; i++) fStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
+
+            for (int i = 0; i < numEnemies; i++)
             {
                 Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y));
-                int multiplier = randomizer.Next(0, 8);
-
-                Ship enemy = new Ship("enemy", position, multiplier * 45);
-                enemies.Add(enemy);
+                int angle = randomizer.Next(0, 8) * 45;
+                
+                enemies.Add(new Ship("enemy", position, angle));
             }
 
-            for (int i=0; i<numAsteroids; i++)
+            for (int i = 0; i < numAsteroids; i++)
             {
                 Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y));
+                int type = randomizer.Next(1, 4);
 
-                Asteroid asteroid = new Asteroid(position, randomizer.Next(1, 4));
-                asteroids.Add(asteroid);
+                asteroids.Add(new Asteroid(position, type));
             }
-
-            // TESTING CODE (COMMENT AFTER USE)
-            //Ship enemy1 = new Ship("enemy", new Vector2(9300, 4000), 0);
-            //Ship enemy2 = new Ship("enemy", new Vector2(9300, 4100), 0);
-            //enemies.Add(enemy1);
-            //enemies.Add(enemy2);
-            // END OF TESTING CODE
 
             base.Initialize();
         }
@@ -234,7 +255,7 @@ namespace Coding_Lab_5
                             carrier.angle);
                         bullets.Add(bullet);
 
-                        cooldowns[gunState - 1] = 0.5;
+                        cooldowns[gunState - 1] = gunCooldown;
                     }
                     else if (gunState == 2 && cooldowns[gunState - 1] <= 0)
                     {
@@ -243,7 +264,7 @@ namespace Coding_Lab_5
                             carrier.angle);
                         bullets.Add(rocket);
 
-                        cooldowns[gunState - 1] = 5;
+                        cooldowns[gunState - 1] = rocketCooldown;
                     }
                     else if (gunState == 3 && cooldowns[gunState - 1] <= 0)
                     {
@@ -258,7 +279,7 @@ namespace Coding_Lab_5
                         bullets.Add(bullet2);
                         bullets.Add(bullet3);
 
-                        cooldowns[gunState - 1] = 1;
+                        cooldowns[gunState - 1] = arCooldown;
                     }
                     else if (gunState == 4 && cooldowns[gunState - 1] <= 0)
                     {
@@ -274,7 +295,7 @@ namespace Coding_Lab_5
                             bullets.Add(laser);
                             laserCharge = 0;
 
-                            cooldowns[gunState - 1] = 10;
+                            cooldowns[gunState - 1] = laserCooldown;
                         }
                     }
                 }
@@ -341,7 +362,7 @@ namespace Coding_Lab_5
                         }
                     }
                 }
-                
+
                 for (int i = 0; i < asteroids.Count; i++)
                 {
                     // asteroid vs player
@@ -365,7 +386,7 @@ namespace Coding_Lab_5
                 else if (Keyboard.GetState().IsKeyDown(Keys.D4)) gunState = 4;
 
                 carrier.Move();
-
+                foreach (Ship enemy in enemies) enemy.Move();
                 for (int i = 0; i < cooldowns.Length; i++) cooldowns[i] -= 0.03;
             }
             else if (state == 2)
@@ -383,53 +404,32 @@ namespace Coding_Lab_5
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            Rectangle backgroundRect = new Rectangle((int)-window.X, (int)-window.Y,
-                (int)(backgroundTexture.Width * Math.Ceiling(fullWindow.X / backgroundTexture.Width)),
-                (int)(backgroundTexture.Height * Math.Ceiling(fullWindow.Y / backgroundTexture.Height)));
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw(Content.Load<Texture2D>("background"), backgroundRect, Color.White);
+            // draw stars
+            foreach (Vector2 position in nStars) spriteBatch.Draw(Content.Load<Texture2D>("NearStar"), position - window, Color.White);
+            foreach (Vector2 position in fStars) spriteBatch.Draw(Content.Load<Texture2D>("FarStar"), position - window, Color.White);
 
             // draw formation ships
             if (state == 1)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
-            }
 
-            // draw enemy ships
-            for (int i = 0; i < enemies.Count; i++)
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemies[i].position - window, Color.White);
+                // draw enemy ships
+                foreach (Ship enemy in enemies)
+                    spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemy.position - window, Color.White);
 
-            // draw asteroids
-            for (int i = 0; i < asteroids.Count; i++)
-            {
-                Texture2D texture;
-
-                switch (asteroids[i].type)
-                {
-                    case 1: texture = Content.Load<Texture2D>("asteroid1"); break;
-                    case 2: texture = Content.Load<Texture2D>("asteroid2"); break;
-                    case 3: texture = Content.Load<Texture2D>("asteroid3"); break;
-                    default: texture = Content.Load<Texture2D>("asteroid4"); break;
-                }
-
-                spriteBatch.Draw(texture, asteroids[i].position - window, Color.White);
+                // draw asteroids
+                foreach (Asteroid asteroid in asteroids)
+                    spriteBatch.Draw(Content.Load<Texture2D>("asteroid" + (asteroid.type + 1)),
+                        asteroid.position - window, Color.White);
             }
 
             // draw bullets
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                Texture2D texture;
-
-                if (bullets[i].type == "bullet") texture = Content.Load<Texture2D>("bullet");
-                else if (bullets[i].type == "rocket") texture = Content.Load<Texture2D>("rocket");
-                else if (bullets[i].type == "laser") texture = Content.Load<Texture2D>("laser");
-                else texture = Content.Load<Texture2D>("bullet");
-
-                spriteBatch.Draw(texture, bullets[i].position - window, Color.White);
-            }
+            foreach (Projectile bullet in bullets)
+                spriteBatch.Draw(Content.Load<Texture2D>(bullet.type), bullet.position - window, Color.White);
 
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
@@ -494,7 +494,6 @@ namespace Coding_Lab_5
 
             if (type == "bullet") speed = bulletSpeed;
             else if (type == "rocket") speed = rocketSpeed;
-            else if (type == "laser") speed = 20;
         }
 
         public void Move()
