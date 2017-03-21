@@ -118,6 +118,15 @@
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\octagon.xnb</Output>
       <Time>2017-03-19T21:22:10.4067404-06:00</Time>
     </Item>
+    <Item>
+      <Source>lives.png</Source>
+      <Name>lives</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
+      <Time>2017-03-21T14:13:29.8800561-06:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{E503FCEC-FAF2-4DF2-9367-CD9FCF7B4E22}</ContentProjectGUID>
