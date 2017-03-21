@@ -315,24 +315,30 @@ namespace Coding_Lab_5
             {
                 if (gunState == 1 && cooldowns[gunState - 1] <= 0) // shoot bullet
                 {
-                    Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10);
-                    double angle = carrier.angle;
+                    Vector2 position = carrier.position +
+                        new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
+                        new Vector2(24, 25);
+                    int angle = carrier.angle;
 
                     bullets.Add(new Projectile("bullet", position, angle));
                     cooldowns[gunState - 1] = gunCooldown;
                 }
                 else if (gunState == 2 && cooldowns[gunState - 1] <= 0) // shoot rocket
                 {
-                    Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10);
-                    double angle = carrier.angle;
+                    Vector2 position = carrier.position +
+                        new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
+                        new Vector2(25, 25);
+                    int angle = carrier.angle;
 
                     bullets.Add(new Projectile("rocket", position, angle));
                     cooldowns[gunState - 1] = rocketCooldown;
                 }
                 else if (gunState == 3 && cooldowns[gunState - 1] <= 0)
                 {
-                    Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10);
-                    double angle = carrier.angle;
+                    Vector2 position = carrier.position +
+                        new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
+                        new Vector2(24, 25);
+                    int angle = carrier.angle;
 
                     Projectile bullet1 = new Projectile("bullet", position, angle - 10);
                     Projectile bullet2 = new Projectile("bullet", position, angle);
@@ -351,7 +357,7 @@ namespace Coding_Lab_5
                     if (laserCharge >= chargeTime)
                     {
                         Vector2 position = camera.window + new Vector2(windowSize.X / 2 + 15, 0);
-                        double angle = carrier.angle;
+                        int angle = carrier.angle;
 
                         bullets.Add(new Projectile("laser", position, angle));
                         laserCharge = 0;
@@ -418,15 +424,15 @@ namespace Coding_Lab_5
             spriteBatch.Begin();
 
             // draw stars
-            foreach (Vector2 position in nStars) camera.Draw(nStarTexture, position, spriteBatch);
-            foreach (Vector2 position in fStars) camera.Draw(fStarTexture, position, spriteBatch);
+            foreach (Vector2 position in nStars) camera.Draw(nStarTexture, position, 0, spriteBatch);
+            foreach (Vector2 position in fStars) camera.Draw(fStarTexture, position, 0, spriteBatch);
 
             // draw carrier
-            if (state == 1) camera.Draw(carrierTexture, carrier.position, spriteBatch);
+            if (state == 1) camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
 
             // draw bullets
             foreach (Projectile bullet in bullets)
-                camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, spriteBatch);
+                camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, bullet.angle, spriteBatch);
 
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
@@ -434,15 +440,15 @@ namespace Coding_Lab_5
             if (state == 1)
             {
                 // draw enemy ships
-                foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, spriteBatch);
+                foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, enemy.angle, spriteBatch);
 
                 // draw asteroids
                 foreach (Asteroid asteroid in asteroids)
                 {
-                    if (asteroid.type == 1) camera.Draw(asteroidTexture1, asteroid.position, spriteBatch);
-                    else if (asteroid.type == 2) camera.Draw(asteroidTexture2, asteroid.position, spriteBatch);
-                    else if (asteroid.type == 3) camera.Draw(asteroidTexture3, asteroid.position, spriteBatch);
-                    else if (asteroid.type == 4) camera.Draw(asteroidTexture4, asteroid.position, spriteBatch);
+                    if (asteroid.type == 1) camera.Draw(asteroidTexture1, asteroid.position, 0, spriteBatch);
+                    else if (asteroid.type == 2) camera.Draw(asteroidTexture2, asteroid.position, 0, spriteBatch);
+                    else if (asteroid.type == 3) camera.Draw(asteroidTexture3, asteroid.position, 0, spriteBatch);
+                    else if (asteroid.type == 4) camera.Draw(asteroidTexture4, asteroid.position, 0, spriteBatch);
                 }
             }
             else if (state == 2)
@@ -466,13 +472,16 @@ namespace Coding_Lab_5
             windowSize = nWindowSize;
         }
 
-        public void Draw(Texture2D texture, Vector2 position, SpriteBatch spriteBatch)
+        public void Draw(Texture2D texture, Vector2 position, int angle, SpriteBatch spriteBatch)
         {
             Vector2 drawPosition = position - window;
+            Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            double radians = (450 - angle) * Math.PI / 180; // 360 - angle because xna flips y coords
 
             if (drawPosition.X + texture.Width >= 0 && drawPosition.X <= windowSize.X &&
                 drawPosition.Y + texture.Height >= 0 && drawPosition.Y <= windowSize.Y)
-                spriteBatch.Draw(texture, drawPosition, Color.White);
+                spriteBatch.Draw(texture, drawPosition, null, Color.White, (float)radians,
+                    origin, 1f, SpriteEffects.None, 0f);
         }
     }
 
@@ -485,7 +494,7 @@ namespace Coding_Lab_5
         public float speed;
         public Vector2 position;
         public Vector2 velocity;
-        public double angle;
+        public int angle;
 
         public Ship(string newType, Vector2 newPosition, int newAngle)
         {
@@ -515,9 +524,9 @@ namespace Coding_Lab_5
         public float speed;
         public Vector2 position;
         public Vector2 velocity;
-        public double angle;
+        public int angle;
 
-        public Projectile(string newType, Vector2 newPosition, double newAngle)
+        public Projectile(string newType, Vector2 newPosition, int newAngle)
         {
             type = newType;
             position = newPosition;
