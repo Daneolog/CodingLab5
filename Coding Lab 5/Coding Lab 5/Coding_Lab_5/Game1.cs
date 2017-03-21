@@ -117,7 +117,6 @@ namespace Coding_Lab_5
 
         // gameplay mechanics
         Vector2 fullWindow = new Vector2(10000f, 10000f);
-        Vector2 window = new Vector2(0f, 0f);
         Vector2 windowSize = new Vector2(700f, 700f);
         float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2f, laserCooldown = 10;
         int carrierSpeed = 5;
@@ -131,26 +130,24 @@ namespace Coding_Lab_5
         // temporary variables (don't change)
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Camera camera;
         Random randomizer = new Random();
-        #region state 1 variables
-        Texture2D carrierTexture;
         Ship closestEnemy;
         Ship carrier;
         List<Projectile> bullets;
         List<Ship> enemies;
         List<Asteroid> asteroids;
-        Vector2 mapPosition; // used when going into minimap
-        #endregion
-        #region state 2 variables
-        int currentSide = 4; // 1 for right, 2 for top, 3 for left and 4 for bottom
-        #endregion
         List<Vector2> nStars;
         List<Vector2> fStars;
         KeyboardState last;
-        int state = 3;
+        int state = 1;
         int gunState = 1;
         double[] cooldowns;
         double laserCharge;
+
+        // texture files
+        Texture2D carrierTexture, nStarTexture, fStarTexture, enemyTexture, asteroidTexture1, asteroidTexture2,
+            asteroidTexture3, asteroidTexture4;
 
         public Game1()
         {
@@ -169,6 +166,7 @@ namespace Coding_Lab_5
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            camera = new Camera(windowSize);
             carrier = new Ship("carrier", new Vector2(windowSize.X / 2, windowSize.Y - 100), 90);
             bullets = new List<Projectile>();
             enemies = new List<Ship>();
@@ -176,8 +174,6 @@ namespace Coding_Lab_5
             nStars = new List<Vector2>();
             fStars = new List<Vector2>();
             cooldowns = new double[4];
-
-            carrierTexture = Content.Load<Texture2D>("carrier");
 
             for (int i=0; i<numNearStars; i++) nStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
             for (int i=0; i<numFarStars; i++) fStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
@@ -209,6 +205,14 @@ namespace Coding_Lab_5
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            carrierTexture = Content.Load<Texture2D>("carrier");
+            nStarTexture = Content.Load<Texture2D>("NearStar");
+            fStarTexture = Content.Load<Texture2D>("FarStar");
+            enemyTexture = Content.Load<Texture2D>("carrier");
+            asteroidTexture1 = Content.Load<Texture2D>("asteroid1");
+            asteroidTexture2 = Content.Load<Texture2D>("asteroid2");
+            asteroidTexture3 = Content.Load<Texture2D>("asteroid3");
+            asteroidTexture4 = Content.Load<Texture2D>("asteroid4");
 
             // TODO: use this.Content to load your game content here
         }
@@ -239,9 +243,9 @@ namespace Coding_Lab_5
             {
                 #region panning
                 if (carrier.position.X - windowSize.X / 2 >= 0 && carrier.position.X + windowSize.X / 2 <= fullWindow.X)
-                    window.X = carrier.position.X - windowSize.X / 2;
+                    camera.window.X = carrier.position.X - windowSize.X / 2;
                 if (carrier.position.Y - windowSize.Y / 2 >= 0 && carrier.position.Y + windowSize.Y / 2 <= fullWindow.Y)
-                    window.Y = carrier.position.Y - windowSize.Y / 2;
+                    camera.window.Y = carrier.position.Y - windowSize.Y / 2;
                 #endregion
 
                 #region moving
@@ -305,60 +309,24 @@ namespace Coding_Lab_5
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) state = 1;
             }
-            #region state 3
-            else if (state == 3)
-            {
-                #region moving
-                // determine direction to go to
-                carrier.angle = currentSide * 90 + 90;                      // find angle to point to
-                if (carrier.angle >= 360) carrier.angle -= 360;             // limit to 360
-                Vector2 rightVector = new Vector2(
-                    (float)Math.Cos((carrier.angle - 90) * Math.PI / 180),
-                    (float)-Math.Sin((carrier.angle - 90) * Math.PI / 180));
-                Vector2 leftVector = new Vector2(
-                    (float)Math.Cos((carrier.angle + 90) * Math.PI / 180),
-                    (float)-Math.Sin((carrier.angle + 90) * Math.PI / 180));
-
-                // move in that direction
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                        carrier.position += carrierSpeed * rightVector;
-                else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                    carrier.position += carrierSpeed * leftVector;
-
-                // change direction
-                if (last.IsKeyDown(Keys.G) && Keyboard.GetState().IsKeyUp(Keys.G)) {
-                    currentSide++;
-                    if (currentSide == 5) currentSide = 1;
-
-                    if (currentSide == 1) carrier.position = new Vector2(600, windowSize.Y / 2);
-                    else if (currentSide == 2) carrier.position = new Vector2(windowSize.X / 2, 50);
-                    else if (currentSide == 3) carrier.position = new Vector2(50, windowSize.Y / 2);
-                    else if (currentSide == 4) carrier.position = new Vector2(windowSize.X / 2, 600);
-                }
-                #endregion
-            }
-            #endregion
 
             #region shooting
-            // shoot bullet
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                if (gunState == 1 && cooldowns[gunState - 1] <= 0)
+                if (gunState == 1 && cooldowns[gunState - 1] <= 0) // shoot bullet
                 {
-                    Projectile bullet = new Projectile("bullet",
-                        carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10),
-                        carrier.angle);
-                    bullets.Add(bullet);
+                    Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(4, 10);
+                    double angle = carrier.angle;
 
+                    bullets.Add(new Projectile("bullet", position, angle));
                     cooldowns[gunState - 1] = gunCooldown;
                 }
-                else if (gunState == 2 && cooldowns[gunState - 1] <= 0)
+                else if (gunState == 2 && cooldowns[gunState - 1] <= 0) // shoot rocket
                 {
-                    Projectile rocket = new Projectile("rocket",
-                        carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10),
-                        carrier.angle);
-                    bullets.Add(rocket);
+                    Vector2 position = carrier.position + new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 - new Vector2(16, 10);
+                    double angle = carrier.angle;
 
+                    bullets.Add(new Projectile("rocket", position, angle));
                     cooldowns[gunState - 1] = rocketCooldown;
                 }
                 else if (gunState == 3 && cooldowns[gunState - 1] <= 0)
@@ -370,26 +338,23 @@ namespace Coding_Lab_5
                     Projectile bullet2 = new Projectile("bullet", position, angle);
                     Projectile bullet3 = new Projectile("bullet", position, angle + 10);
 
-                    bullets.Add(bullet1);
-                    bullets.Add(bullet2);
-                    bullets.Add(bullet3);
+                    bullets.Add(new Projectile("bullet", position, angle - 10));
+                    bullets.Add(new Projectile("bullet", position, angle));
+                    bullets.Add(new Projectile("bullet", position, angle + 10));
 
                     cooldowns[gunState - 1] = arCooldown;
                 }
                 else if (gunState == 4 && cooldowns[gunState - 1] <= 0)
                 {
-                    Vector2 position = window + new Vector2(windowSize.X / 2 + 15, 0);
-                    double angle = carrier.angle;
-
-                    Projectile laser = new Projectile("laser", position, angle);
-
                     laserCharge += 0.1;
 
                     if (laserCharge >= chargeTime)
                     {
-                        bullets.Add(laser);
-                        laserCharge = 0;
+                        Vector2 position = camera.window + new Vector2(windowSize.X / 2 + 15, 0);
+                        double angle = carrier.angle;
 
+                        bullets.Add(new Projectile("laser", position, angle));
+                        laserCharge = 0;
                         cooldowns[gunState - 1] = laserCooldown;
                     }
                 }
@@ -401,7 +366,7 @@ namespace Coding_Lab_5
             // move bullets
             for (int i = 0; i < bullets.Count; i++)
             {
-                Vector2 position = bullets[i].position - window;
+                Vector2 position = bullets[i].position - camera.window;
 
                 //if (bullets[i].type == "rocket") // home rockets
                 //{
@@ -453,18 +418,15 @@ namespace Coding_Lab_5
             spriteBatch.Begin();
 
             // draw stars
-            foreach (Vector2 position in nStars) spriteBatch.Draw(Content.Load<Texture2D>("NearStar"), position - window, Color.White);
-            foreach (Vector2 position in fStars) spriteBatch.Draw(Content.Load<Texture2D>("FarStar"), position - window, Color.White);
+            foreach (Vector2 position in nStars) camera.Draw(nStarTexture, position, spriteBatch);
+            foreach (Vector2 position in fStars) camera.Draw(fStarTexture, position, spriteBatch);
 
             // draw carrier
-            if (state == 1)
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position - window, Color.White);
-            else if (state == 3)
-                spriteBatch.Draw(Content.Load<Texture2D>("carrier"), carrier.position, Color.White);
+            if (state == 1) camera.Draw(carrierTexture, carrier.position, spriteBatch);
 
             // draw bullets
             foreach (Projectile bullet in bullets)
-                spriteBatch.Draw(Content.Load<Texture2D>(bullet.type), bullet.position - window, Color.White);
+                camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, spriteBatch);
 
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
             spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
@@ -472,26 +434,45 @@ namespace Coding_Lab_5
             if (state == 1)
             {
                 // draw enemy ships
-                foreach (Ship enemy in enemies)
-                    spriteBatch.Draw(Content.Load<Texture2D>("carrier"), enemy.position - window, Color.White);
+                foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, spriteBatch);
 
                 // draw asteroids
                 foreach (Asteroid asteroid in asteroids)
-                    spriteBatch.Draw(Content.Load<Texture2D>("asteroid" + (asteroid.type + 1)),
-                        asteroid.position - window, Color.White);
+                {
+                    if (asteroid.type == 1) camera.Draw(asteroidTexture1, asteroid.position, spriteBatch);
+                    else if (asteroid.type == 2) camera.Draw(asteroidTexture2, asteroid.position, spriteBatch);
+                    else if (asteroid.type == 3) camera.Draw(asteroidTexture3, asteroid.position, spriteBatch);
+                    else if (asteroid.type == 4) camera.Draw(asteroidTexture4, asteroid.position, spriteBatch);
+                }
             }
             else if (state == 2)
             {
                 spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
             }
-            else if (state == 3)
-            {
-                spriteBatch.Draw(Content.Load<Texture2D>("octagon"), new Vector2(0, 0), Color.White);
-            }
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+    }
+
+    public class Camera
+    {
+        public Vector2 window;
+        public Vector2 windowSize;
+
+        public Camera(Vector2 nWindowSize)
+        {
+            windowSize = nWindowSize;
+        }
+
+        public void Draw(Texture2D texture, Vector2 position, SpriteBatch spriteBatch)
+        {
+            Vector2 drawPosition = position - window;
+
+            if (drawPosition.X + texture.Width >= 0 && drawPosition.X <= windowSize.X &&
+                drawPosition.Y + texture.Height >= 0 && drawPosition.Y <= windowSize.Y)
+                spriteBatch.Draw(texture, drawPosition, Color.White);
         }
     }
 
