@@ -56,7 +56,6 @@ namespace Coding_Lab_5
                 projectile.position.X + pSize.X >= ship.position.X &&
                 projectile.position.Y <= ship.position.Y + sSize.Y &&
                 projectile.position.Y + pSize.Y >= ship.position.Y;
-
         }
 
         public bool collide(Projectile projectile, Asteroid asteroid)
@@ -75,7 +74,6 @@ namespace Coding_Lab_5
                 projectile.position.X + pSize.X >= asteroid.position.X &&
                 projectile.position.Y <= asteroid.position.Y + 32 &&
                 projectile.position.Y + pSize.Y >= asteroid.position.Y;
-
         }
 
         public bool collide(Asteroid asteroid, Ship ship)
@@ -84,7 +82,6 @@ namespace Coding_Lab_5
                 asteroid.position.X + 32 >= ship.position.X &&
                 asteroid.position.Y <= ship.position.Y + 50 &&
                 asteroid.position.Y + 32 >= ship.position.Y;
-
         }
 
         public bool collide(Ship carrier, Ship enemy)
@@ -93,7 +90,6 @@ namespace Coding_Lab_5
                 carrier.position.X + 50 >= enemy.position.X &&
                 carrier.position.Y <= enemy.position.Y + 50 &&
                 carrier.position.Y + 50 >= enemy.position.Y;
-
         }
 
         public double distance(Projectile projectile, Ship ship)
@@ -112,6 +108,15 @@ namespace Coding_Lab_5
 
             return angle;
         }
+
+        public Vector2 toMinimap(Vector2 original)
+        {
+            Vector2 minimap;
+            minimap.X = original.X / fullWindow.X * minimapTexture.Width;
+            minimap.Y = original.Y / fullWindow.Y * minimapTexture.Height;
+
+            return minimap + new Vector2(500, 500);
+        }
         #endregion
 
         // global gameplay variables
@@ -121,6 +126,7 @@ namespace Coding_Lab_5
         Vector2 fullWindow = new Vector2(10000f, 10000f);
         Vector2 windowSize = new Vector2(700f, 700f);
         float gunCooldown = 0.5f, rocketCooldown = 5, arCooldown = 2f, laserCooldown = 10;
+        float rocketAmmo = 3, arAmmo = 5, laserAmmo = 2;
         int carrierSpeed = 5;
         int homingPower = 2;
         int chargeTime = 5;
@@ -139,17 +145,18 @@ namespace Coding_Lab_5
         List<Projectile> bullets;
         List<Ship> enemies;
         List<Asteroid> asteroids;
-        List<Vector2> nStars;
-        List<Vector2> fStars;
+        List<Vector2> nStars, fStars;
         KeyboardState last;
         int state = 2;
         int gunState = 1;
         double[] cooldowns;
+        double[] ammo;
         double laserCharge;
 
         // texture files
-        Texture2D carrierTexture, nStarTexture, fStarTexture, livesTexture, enemyTexture, asteroidTexture1,
-            asteroidTexture2, asteroidTexture3, asteroidTexture4;
+        Texture2D carrierTexture, nStarTexture, fStarTexture, livesTexture, enemyTexture, minimapTexture,
+            enemyDot, asteroidDot, carrierDot, asteroidTexture1, asteroidTexture2, asteroidTexture3,
+            asteroidTexture4;
 
         public Game1()
         {
@@ -176,6 +183,11 @@ namespace Coding_Lab_5
             nStars = new List<Vector2>();
             fStars = new List<Vector2>();
             cooldowns = new double[4];
+            ammo = new double[3];
+
+            ammo[0] = rocketAmmo;
+            ammo[1] = arAmmo;
+            ammo[2] = laserAmmo;
 
             for (int i=0; i<numNearStars; i++) nStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
             for (int i=0; i<numFarStars; i++) fStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
@@ -212,6 +224,10 @@ namespace Coding_Lab_5
             fStarTexture = Content.Load<Texture2D>("FarStar");
             livesTexture = Content.Load<Texture2D>("lives");
             enemyTexture = Content.Load<Texture2D>("carrier");
+            minimapTexture = Content.Load<Texture2D>("minimap");
+            enemyDot = Content.Load<Texture2D>("enemyDot");
+            asteroidDot = Content.Load<Texture2D>("asteroidDot");
+            carrierDot = Content.Load<Texture2D>("carrierDot");
             asteroidTexture1 = Content.Load<Texture2D>("asteroid1");
             asteroidTexture2 = Content.Load<Texture2D>("asteroid2");
             asteroidTexture3 = Content.Load<Texture2D>("asteroid3");
@@ -262,31 +278,32 @@ namespace Coding_Lab_5
                 #region shooting
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
-                    if (gunState == 1 && cooldowns[gunState - 1] <= 0) // shoot bullet
+                    if (gunState == 1 && cooldowns[0] <= 0) // shoot bullet
                     {
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
-                            new Vector2(24, 25);
+                            new Vector2(24, 24);
                         int angle = carrier.angle;
 
                         bullets.Add(new Projectile("bullet", position, angle));
-                        cooldowns[gunState - 1] = gunCooldown;
+                        cooldowns[0] = gunCooldown;
                     }
-                    else if (gunState == 2 && cooldowns[gunState - 1] <= 0) // shoot rocket
+                    else if (gunState == 2 && cooldowns[1] <= 0 && ammo[0] >= 1) // shoot rocket
                     {
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
-                            new Vector2(25, 25);
+                            new Vector2(24, 24);
                         int angle = carrier.angle;
 
                         bullets.Add(new Projectile("rocket", position, angle));
-                        cooldowns[gunState - 1] = rocketCooldown;
+                        cooldowns[1] = rocketCooldown;
+                        ammo[0]--;
                     }
-                    else if (gunState == 3 && cooldowns[gunState - 1] <= 0)
+                    else if (gunState == 3 && cooldowns[2] <= 0 && ammo[1] >= 1)
                     {
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
-                            new Vector2(24, 25);
+                            new Vector2(24, 24);
                         int angle = carrier.angle;
 
                         Projectile bullet1 = new Projectile("bullet", position, angle - 10);
@@ -297,9 +314,10 @@ namespace Coding_Lab_5
                         bullets.Add(new Projectile("bullet", position, angle));
                         bullets.Add(new Projectile("bullet", position, angle + 10));
 
-                        cooldowns[gunState - 1] = arCooldown;
+                        cooldowns[2] = arCooldown;
+                        ammo[1]--;
                     }
-                    else if (gunState == 4 && cooldowns[gunState - 1] <= 0)
+                    else if (gunState == 4 && cooldowns[3] <= 0 && ammo[2] >= 1)
                     {
                         laserCharge += 0.1;
 
@@ -310,7 +328,8 @@ namespace Coding_Lab_5
 
                             bullets.Add(new Projectile("laser", position, angle));
                             laserCharge = 0;
-                            cooldowns[gunState - 1] = laserCooldown;
+                            cooldowns[3] = laserCooldown;
+                            ammo[2]--;
                         }
                     }
                 }
@@ -384,6 +403,14 @@ namespace Coding_Lab_5
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) state = 2;
             }
+            else if (state == 4)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    state = 1;
+                    lives = 5;
+                }
+            }
 
             #region moving projectiles
             // move bullets
@@ -425,6 +452,11 @@ namespace Coding_Lab_5
             else if (Keyboard.GetState().IsKeyDown(Keys.D4)) gunState = 4;
 
             for (int i = 0; i < cooldowns.Length; i++) cooldowns[i] -= 0.03;
+
+            if (ammo[0] < rocketAmmo) ammo[0] += 0.0015;
+            if (ammo[1] < arAmmo) ammo[1] += 0.0015;
+            if (ammo[2] < laserAmmo) ammo[2] += 0.0015;
+
             last = Keyboard.GetState();
             base.Update(gameTime);
         }
@@ -444,47 +476,61 @@ namespace Coding_Lab_5
             foreach (Vector2 position in nStars) camera.Draw(nStarTexture, position, 90, spriteBatch);
             foreach (Vector2 position in fStars) camera.Draw(fStarTexture, position, 90, spriteBatch);
 
-            // draw carrier
-            if (state == 2) camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
-
-            // draw bullets
-            foreach (Projectile bullet in bullets)
-                camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, bullet.angle, spriteBatch);
-
-            // draw lives
-            for (int i = 0; i < lives; i++)
+            if (state == 1)
             {
-                Vector2 position = new Vector2(i * 40, windowSize.Y / 2);
-                camera.Draw(livesTexture, new Vector2(i * 35 + 20, windowSize.Y - 20) + camera.window, 90, spriteBatch);
+
             }
-
-            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
-            spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
-            
-            if (state == 2)
+            else
             {
-                // draw enemy ships
-                foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, enemy.angle, spriteBatch);
+                // draw bullets
+                foreach (Projectile bullet in bullets)
+                    camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, bullet.angle, spriteBatch);
 
-                // draw asteroids
-                foreach (Asteroid asteroid in asteroids)
+                // draw carrier
+                if (state == 2) camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
+
+                if (state == 2)
                 {
-                    switch (asteroid.type)
+                    // draw enemy ships
+                    foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, enemy.angle, spriteBatch);
+
+                    // draw asteroids
+                    foreach (Asteroid asteroid in asteroids)
                     {
-                        case 1: camera.Draw(asteroidTexture1, asteroid.position, 90, spriteBatch); break;
-                        case 2: camera.Draw(asteroidTexture2, asteroid.position, 90, spriteBatch); break;
-                        case 3: camera.Draw(asteroidTexture3, asteroid.position, 90, spriteBatch); break;
-                        case 4: camera.Draw(asteroidTexture4, asteroid.position, 90, spriteBatch); break;
+                        switch (asteroid.type)
+                        {
+                            case 1: camera.Draw(asteroidTexture1, asteroid.position, 90, spriteBatch); break;
+                            case 2: camera.Draw(asteroidTexture2, asteroid.position, 90, spriteBatch); break;
+                            case 3: camera.Draw(asteroidTexture3, asteroid.position, 90, spriteBatch); break;
+                            case 4: camera.Draw(asteroidTexture4, asteroid.position, 90, spriteBatch); break;
+                        }
                     }
                 }
-            }
-            else if (state == 3)
-            {
-                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
-            }
-            else if (state == 4)
-            {
-                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "game over x-(", new Vector2(100, 100), Color.White);
+                else if (state == 3)
+                {
+                    spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
+                }
+                else if (state == 4)
+                {
+                    spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "game over x-(", new Vector2(100, 100), Color.White);
+                }
+
+                // draw lives
+                for (int i = 0; i < lives; i++)
+                {
+                    Vector2 position = new Vector2(i * 40, windowSize.Y / 2);
+                    spriteBatch.Draw(livesTexture, new Vector2(i * 35 + 20, windowSize.Y - 20), Color.White);
+                }
+
+                // draw minimap
+                spriteBatch.Draw(minimapTexture, new Vector2(500, 500), Color.White);
+                spriteBatch.Draw(carrierDot, toMinimap(carrier.position), Color.White);
+                foreach (Ship enemy in enemies) spriteBatch.Draw(enemyDot, toMinimap(enemy.position), Color.White);
+                foreach (Asteroid asteroid in asteroids) spriteBatch.Draw(asteroidDot, toMinimap(asteroid.position), Color.White);
+
+                if (gunState > 1) spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + Math.Round(ammo[gunState - 2], 0), new Vector2(windowSize.X / 2 - 50, windowSize.Y - 30), Color.White);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
+                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
             }
 
             spriteBatch.End();
