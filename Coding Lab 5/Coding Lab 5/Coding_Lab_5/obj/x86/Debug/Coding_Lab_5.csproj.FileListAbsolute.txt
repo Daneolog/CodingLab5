@@ -165,6 +165,7 @@ C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\D
 C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.exe
 C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
+<<<<<<< HEAD
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb
@@ -198,3 +199,7 @@ C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Codi
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.exe
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
+=======
+C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb
+C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb
+>>>>>>> origin/master

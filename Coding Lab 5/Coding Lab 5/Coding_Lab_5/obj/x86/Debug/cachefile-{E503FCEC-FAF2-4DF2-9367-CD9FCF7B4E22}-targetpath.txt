@@ -15,3 +15,5 @@ Content\enemyDot.xnb
 Content\carrier.xnb
 Content\minimap.xnb
 Content\carrierDot.xnb
+Content\TitleFont.xnb
+Content\bigcarrier.xnb
