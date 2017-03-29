@@ -8,7 +8,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2017-03-17T10:15:46-06:00</Time>
+      <Time>2017-03-28T18:12:02.6967171-06:00</Time>
     </Item>
     <Item>
       <Source>background.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2017-03-17T10:15:46-06:00</Time>
+      <Time>2017-03-28T18:12:02.8060978-06:00</Time>
     </Item>
     <Item>
       <Source>bullet.png</Source>
@@ -26,25 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
-      <Time>2017-03-17T10:15:46-06:00</Time>
-    </Item>
-    <Item>
-      <Source>carrier.png</Source>
-      <Name>carrier</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
-      <Time>2017-03-22T13:30:31.6944518-06:00</Time>
-    </Item>
-    <Item>
-      <Source>rocket.png</Source>
-      <Name>rocket</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2017-03-20T20:43:33.3753457-06:00</Time>
+      <Time>2017-03-28T18:12:02.8998547-06:00</Time>
     </Item>
     <Item>
       <Source>laser.png</Source>
@@ -53,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2017-03-17T10:15:46-06:00</Time>
+      <Time>2017-03-28T18:12:02.9936078-06:00</Time>
     </Item>
     <Item>
       <Source>asteroid1.png</Source>
@@ -62,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
-      <Time>2017-03-19T19:44:46.3611263-06:00</Time>
+      <Time>2017-03-28T18:12:02.727969-06:00</Time>
     </Item>
     <Item>
       <Source>asteroid2.png</Source>
@@ -71,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
-      <Time>2017-03-19T19:44:46.3631279-06:00</Time>
+      <Time>2017-03-28T18:12:02.7435964-06:00</Time>
     </Item>
     <Item>
       <Source>asteroid3.png</Source>
@@ -80,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
-      <Time>2017-03-19T19:44:46.3641298-06:00</Time>
+      <Time>2017-03-28T18:12:02.7592231-06:00</Time>
     </Item>
     <Item>
       <Source>asteroid4.png</Source>
@@ -89,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
-      <Time>2017-03-19T19:44:46.3661301-06:00</Time>
+      <Time>2017-03-28T18:12:02.7748484-06:00</Time>
     </Item>
     <Item>
       <Source>FarStar.png</Source>
@@ -98,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
-      <Time>2017-03-19T19:06:34.1501698-06:00</Time>
+      <Time>2017-03-28T18:12:02.6810911-06:00</Time>
     </Item>
     <Item>
       <Source>NearStar.png</Source>
@@ -107,7 +89,16 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
-      <Time>2017-03-19T19:06:34.1421648-06:00</Time>
+      <Time>2017-03-28T18:12:02.7123431-06:00</Time>
+    </Item>
+    <Item>
+      <Source>rocket.png</Source>
+      <Name>rocket</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2017-03-28T18:12:03.0717373-06:00</Time>
     </Item>
     <Item>
       <Source>lives.png</Source>
@@ -116,16 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
-      <Time>2017-03-21T14:13:29.8800561-06:00</Time>
-    </Item>
-    <Item>
-      <Source>minimap.png</Source>
-      <Name>minimap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
-      <Time>2017-03-22T14:12:51.9232975-06:00</Time>
+      <Time>2017-03-28T18:12:02.9936078-06:00</Time>
     </Item>
     <Item>
       <Source>asteroidDot.png</Source>
@@ -134,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
-      <Time>2017-03-22T14:16:04.9922562-06:00</Time>
+      <Time>2017-03-28T18:12:02.7904722-06:00</Time>
     </Item>
     <Item>
       <Source>enemyDot.png</Source>
@@ -143,7 +125,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
-      <Time>2017-03-22T14:16:04.984253-06:00</Time>
+      <Time>2017-03-28T18:12:02.9779814-06:00</Time>
+    </Item>
+    <Item>
+      <Source>carrier.png</Source>
+      <Name>carrier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-03-28T18:12:02.931106-06:00</Time>
+    </Item>
+    <Item>
+      <Source>minimap.png</Source>
+      <Name>minimap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
+      <Time>2017-03-28T18:12:03.0404857-06:00</Time>
     </Item>
     <Item>
       <Source>carrierDot.png</Source>
@@ -152,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
-      <Time>2017-03-22T14:16:04.9962607-06:00</Time>
+      <Time>2017-03-28T18:12:02.9623576-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
