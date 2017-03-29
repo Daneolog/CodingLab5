@@ -6,6 +6,7 @@
  * 2: alive
  * 3: dead
  * 4: game over
+ * 5: credits
  * 
  * Guns list:
  * 1: regular gun
@@ -109,6 +110,17 @@ namespace Coding_Lab_5
             return angle;
         }
 
+        public double angle(Ship ship1, Vector2 ship2)
+        {
+            double x = ship1.position.X - 25 - ship2.X + 25;
+            double y = -(ship1.position.Y - 25 - ship2.Y + 25);
+
+            double angle = Math.Atan2(y, x) * 180 / Math.PI;
+            if (angle < 0) angle += 360;
+
+            return angle;
+        }
+
         public Vector2 toMinimap(Vector2 original)
         {
             Vector2 minimap;
@@ -147,18 +159,20 @@ namespace Coding_Lab_5
         List<Ship> enemies;
         List<Asteroid> asteroids;
         List<Vector2> nStars, fStars;
-        KeyboardState last;
-        int state = 2;
+        SpriteFont titleFont, gameFont;
+        ButtonState lastDownState, lastUpState;
+        int state = 5;
         int gunState = 1;
         double[] cooldowns;
         double[] ammo;
         double laserCharge;
         float vibrationPower;
+        int menuChoice = 1;
 
         // texture files
-        Texture2D carrierTexture, nStarTexture, fStarTexture, livesTexture, enemyTexture, minimapTexture,
-            enemyDot, asteroidDot, carrierDot, asteroidTexture1, asteroidTexture2, asteroidTexture3,
-            asteroidTexture4;
+        Texture2D carrierTexture, bigCarrierTexture, nStarTexture, fStarTexture, livesTexture,
+            enemyTexture, minimapTexture, enemyDot, asteroidDot, carrierDot, asteroidTexture1,
+            asteroidTexture2, asteroidTexture3, asteroidTexture4;
 
         public Game1()
         {
@@ -191,14 +205,14 @@ namespace Coding_Lab_5
             ammo[1] = arAmmo;
             ammo[2] = laserAmmo;
 
-            for (int i=0; i<numNearStars; i++) nStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
-            for (int i=0; i<numFarStars; i++) fStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
+            for (int i = 0; i < numNearStars; i++) nStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
+            for (int i = 0; i < numFarStars; i++) fStars.Add(new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y)));
 
             for (int i = 0; i < numEnemies; i++)
             {
                 Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X), randomizer.Next(0, (int)fullWindow.Y));
                 int angle = randomizer.Next(0, 8) * 45;
-                
+
                 enemies.Add(new Ship("enemy", position, angle));
             }
 
@@ -223,6 +237,7 @@ namespace Coding_Lab_5
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             carrierTexture = Content.Load<Texture2D>("carrier");
+            bigCarrierTexture = Content.Load<Texture2D>("bigcarrier");
             nStarTexture = Content.Load<Texture2D>("NearStar");
             fStarTexture = Content.Load<Texture2D>("FarStar");
             livesTexture = Content.Load<Texture2D>("lives");
@@ -235,6 +250,8 @@ namespace Coding_Lab_5
             asteroidTexture2 = Content.Load<Texture2D>("asteroid2");
             asteroidTexture3 = Content.Load<Texture2D>("asteroid3");
             asteroidTexture4 = Content.Load<Texture2D>("asteroid4");
+            titleFont = Content.Load<SpriteFont>("TitleFont");
+            gameFont = Content.Load<SpriteFont>("GameFont");
 
             // TODO: use this.Content to load your game content here
         }
@@ -260,6 +277,27 @@ namespace Coding_Lab_5
                 this.Exit();
 
             // TODO: Add your update logic here
+            if (state == 1)
+            {
+                ButtonState downState = GamePad.GetState(PlayerIndex.One).DPad.Down;
+                ButtonState upState = GamePad.GetState(PlayerIndex.One).DPad.Down;
+
+                if (menuChoice > 1 && lastDownState == ButtonState.Pressed && downState == ButtonState.Released)
+                    menuChoice++;
+                else if (menuChoice < 3 && lastUpState == ButtonState.Pressed && upState == ButtonState.Released)
+                    menuChoice--;
+
+                if (GamePad.GetState(PlayerIndex.One).Triggers.Left >= 0.1f ||
+                    GamePad.GetState(PlayerIndex.One).Triggers.Right >= 0.1f)
+                {
+                    switch (menuChoice)
+                    {
+                        case 1: state = 2; break;
+                        case 2: state = 5; break;
+                        case 3: this.Exit(); break;
+                    }
+                }
+            }
             if (state == 2)
             {
                 #region panning
@@ -412,7 +450,7 @@ namespace Coding_Lab_5
                 #endregion
 
                 carrier.Move();
-                for (int i=0; i<enemies.Count; i++)
+                for (int i = 0; i < enemies.Count; i++)
                 {
                     if (i < enemies.Count)
                     {
@@ -434,6 +472,10 @@ namespace Coding_Lab_5
                     state = 1;
                     lives = 5;
                 }
+            }
+            else if (state == 5)
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) state = 1;
             }
 
             #region moving projectiles
@@ -482,8 +524,18 @@ namespace Coding_Lab_5
             if (vibrationPower > 0) vibrationPower -= 0.005f;
             if (vibrationPower < 0) vibrationPower = 0;
 
+            if (enemies.Count() < numEnemies)
+            {
+                Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X),
+                    randomizer.Next(0, (int)fullWindow.Y));
+
+                enemies.Add(new Ship("enemy", position, (int)angle(carrier, position)));
+            }
+
+            lastDownState = GamePad.GetState(PlayerIndex.One).DPad.Down;
+            lastUpState = GamePad.GetState(PlayerIndex.One).DPad.Up;
+
             GamePad.SetVibration(PlayerIndex.One, vibrationPower, vibrationPower);
-            last = Keyboard.GetState();
             base.Update(gameTime);
         }
 
@@ -504,7 +556,21 @@ namespace Coding_Lab_5
 
             if (state == 1)
             {
-
+                spriteBatch.Draw(bigCarrierTexture, new Vector2(windowSize.X / 2 - 24, 50), Color.White);
+                spriteBatch.DrawString(titleFont, "+ conians", new Vector2(windowSize.X / 2 - 50, 175), Color.Red);
+                spriteBatch.DrawString(titleFont, "Play", new Vector2(windowSize.X / 2 - 20, 300),
+                    menuChoice == 1 ? Color.Blue : Color.White);
+                spriteBatch.DrawString(titleFont, "Credits", new Vector2(windowSize.X / 2 - 47, 375),
+                    menuChoice == 2 ? Color.Blue : Color.White);
+                spriteBatch.DrawString(titleFont, "Exit", new Vector2(windowSize.X / 2 - 17, 450),
+                    menuChoice == 3 ? Color.Blue : Color.White);
+            }
+            else if (state == 5)
+            {
+                spriteBatch.DrawString(titleFont, "Enoch Kumala", new Vector2(windowSize.X / 2 - 125, 200), Color.Green);
+                spriteBatch.DrawString(titleFont, "Julian Ochoa", new Vector2(windowSize.X / 2 - 115, 300), Color.Blue);
+                spriteBatch.DrawString(titleFont, "Matthew Moltzau", new Vector2(windowSize.X / 2 - 175, 400), Color.Red);
+                spriteBatch.DrawString(titleFont, "Michael Para", new Vector2(windowSize.X / 2 - 125, 500), Color.White);
             }
             else
             {
@@ -512,11 +578,10 @@ namespace Coding_Lab_5
                 foreach (Projectile bullet in bullets)
                     camera.Draw(Content.Load<Texture2D>(bullet.type), bullet.position, bullet.angle, spriteBatch);
 
-                // draw carrier
-                if (state == 2) camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
-
                 if (state == 2)
                 {
+                    camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
+
                     // draw enemy ships
                     foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, enemy.angle, spriteBatch);
 
@@ -534,11 +599,11 @@ namespace Coding_Lab_5
                 }
                 else if (state == 3)
                 {
-                    spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "ur ded x-|", new Vector2(100, 100), Color.White);
+                    spriteBatch.DrawString(gameFont, "ur ded x-|", new Vector2(100, 100), Color.White);
                 }
                 else if (state == 4)
                 {
-                    spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "game over x-(", new Vector2(100, 100), Color.White);
+                    spriteBatch.DrawString(gameFont, "game over x-(", new Vector2(100, 100), Color.White);
                 }
 
                 // draw lives
@@ -554,9 +619,9 @@ namespace Coding_Lab_5
                 foreach (Ship enemy in enemies) spriteBatch.Draw(enemyDot, toMinimap(enemy.position), Color.White);
                 spriteBatch.Draw(carrierDot, toMinimap(carrier.position), Color.White);
 
-                if (gunState > 1) spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + Math.Round(ammo[gunState - 2], 0), new Vector2(windowSize.X / 2 - 50, windowSize.Y - 30), Color.White);
-                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
-                spriteBatch.DrawString(Content.Load<SpriteFont>("GameFont"), "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
+                if (gunState > 1) spriteBatch.DrawString(gameFont, "" + Math.Round(ammo[gunState - 2], 0), new Vector2(windowSize.X / 2 - 50, windowSize.Y - 30), Color.White);
+                spriteBatch.DrawString(gameFont, "" + gunState, new Vector2(windowSize.X / 2, windowSize.Y - 30), Color.White);
+                spriteBatch.DrawString(gameFont, "" + laserCharge, new Vector2(windowSize.X / 2 + 50, windowSize.Y - 30), Color.White);
             }
 
             spriteBatch.End();
