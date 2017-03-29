@@ -7,7 +7,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
       <Time>2017-03-27T11:56:23.1952187-06:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
       <Time>2017-03-27T11:56:23.2733472-06:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
       <Time>2017-03-27T11:56:23.2420957-06:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
       <Time>2017-03-27T11:56:23.3202246-06:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
       <Time>2017-03-27T11:56:23.2733472-06:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
       <Time>2017-03-27T11:56:23.2420957-06:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
       <Time>2017-03-27T11:56:23.2889731-06:00</Time>
     </Item>
     <Item>
@@ -70,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
       <Time>2017-03-27T11:56:23.2264701-06:00</Time>
     </Item>
     <Item>
@@ -79,7 +79,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
       <Time>2017-03-27T11:56:23.1639679-06:00</Time>
     </Item>
     <Item>
@@ -88,7 +88,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
       <Time>2017-03-27T11:56:23.3202246-06:00</Time>
     </Item>
     <Item>
@@ -97,7 +97,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
       <Time>2017-03-27T11:56:23.2577213-06:00</Time>
     </Item>
     <Item>
@@ -106,7 +106,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
       <Time>2017-03-27T11:56:23.367102-06:00</Time>
     </Item>
     <Item>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
-      <Time>2017-03-27T11:56:23.1639679-06:00</Time>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1843374-06:00</Time>
     </Item>
     <Item>
       <Source>enemyDot.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
-      <Time>2017-03-27T11:56:23.2108442-06:00</Time>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1873396-06:00</Time>
     </Item>
     <Item>
       <Source>carrier.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
-      <Time>2017-03-27T11:56:23.2108442-06:00</Time>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-03-27T13:43:42.1853382-06:00</Time>
     </Item>
     <Item>
       <Source>minimap.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
-      <Time>2017-03-27T11:56:23.3045987-06:00</Time>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
+      <Time>2017-03-27T13:43:42.1903414-06:00</Time>
     </Item>
     <Item>
       <Source>carrierDot.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
-      <Time>2017-03-27T11:56:23.3514764-06:00</Time>
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1863391-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -161,10 +161,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
