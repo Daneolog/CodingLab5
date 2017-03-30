@@ -167,3 +167,4 @@ C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\D
 C:\Users\Julian Ochoa\Documents\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
 C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb
 C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb
+C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\crosshairs.xnb

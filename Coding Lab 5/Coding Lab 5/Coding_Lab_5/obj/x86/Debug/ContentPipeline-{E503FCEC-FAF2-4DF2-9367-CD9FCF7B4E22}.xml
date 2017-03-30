@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2017-03-28T18:12:03.0717373-06:00</Time>
+      <Time>2017-03-29T14:42:14.8469909-06:00</Time>
     </Item>
     <Item>
       <Source>lives.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
-      <Time>2017-03-28T18:12:02.9936078-06:00</Time>
+      <Time>2017-03-29T20:46:54.2908562-06:00</Time>
     </Item>
     <Item>
       <Source>asteroidDot.png</Source>
@@ -171,6 +171,15 @@
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb</Output>
       <Time>2017-03-28T22:54:40.5577078-06:00</Time>
+    </Item>
+    <Item>
+      <Source>crosshairs.png</Source>
+      <Name>crosshairs</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\crosshairs.xnb</Output>
+      <Time>2017-03-29T21:10:52.2276045-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
