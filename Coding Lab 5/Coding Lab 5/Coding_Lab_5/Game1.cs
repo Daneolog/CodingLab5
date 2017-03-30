@@ -43,7 +43,7 @@ namespace Coding_Lab_5
             {
                 case "bullet": pSize = new Vector2(8, 20); break;
                 case "rocket": pSize = new Vector2(8, 20); break;
-                case "laser": pSize = new Vector2(20, windowSize.Y / 2); break;
+                case "laser": pSize = new Vector2(20, 500); break;
                 default: pSize = Vector2.Zero; break;
             }
 
@@ -67,7 +67,7 @@ namespace Coding_Lab_5
             {
                 case "bullet": pSize = new Vector2(8, 20); break;
                 case "rocket": pSize = new Vector2(8, 20); break;
-                case "laser": pSize = new Vector2(20, windowSize.Y / 2); break;
+                case "laser": pSize = new Vector2(20, 500); break;
                 default: pSize = Vector2.Zero; break;
             }
 
@@ -137,7 +137,7 @@ namespace Coding_Lab_5
                 return initial - Math.Sign(final - initial) * homingPower;
         }
         #endregion
-
+        
         public void drawRectangle(Vector2 position, Vector2 size, Color fill, Color outline)
         {
             // credit to Stack Overflow post
@@ -545,10 +545,8 @@ namespace Coding_Lab_5
                 bullets[i].Move();
                 if (bullets[i].type == "bullet" && (position.X + 8 <= 0 || position.X >= windowSize.X ||
                     position.Y + 20 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
-                else if (bullets[i].type == "rocket" && (position.X + 32 <= 0 || position.X >= windowSize.X ||
-                    position.Y + 20 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
                 else if (bullets[i].type == "laser" && (position.X + 20 <= 0 || position.X >= windowSize.X ||
-                    position.Y + 20 <= 0 || position.Y + 300 >= windowSize.Y)) bullets.RemoveAt(i);
+                    position.Y + 20 <= 0 || position.Y + 500 >= windowSize.Y)) bullets.RemoveAt(i);
             }
             #endregion
 
