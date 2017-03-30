@@ -7,8 +7,13 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Time>2017-03-27T11:56:23.1952187-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
       <Time>2017-03-28T18:12:02.6967171-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>background.png</Source>
@@ -16,8 +21,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2017-03-27T11:56:23.2733472-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
       <Time>2017-03-28T18:12:02.8060978-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>bullet.png</Source>
@@ -25,8 +35,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Time>2017-03-27T11:56:23.2420957-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
       <Time>2017-03-28T18:12:02.8998547-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>laser.png</Source>
@@ -34,8 +49,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
+      <Time>2017-03-27T11:56:23.3202246-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
+<<<<<<< HEAD
       <Time>2017-03-29T22:16:28.5925062-06:00</Time>
+=======
+      <Time>2017-03-28T18:12:02.9936078-06:00</Time>
+>>>>>>> origin/master
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>asteroid1.png</Source>
@@ -43,8 +67,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
+      <Time>2017-03-27T11:56:23.2733472-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
       <Time>2017-03-28T18:12:02.727969-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>asteroid2.png</Source>
@@ -52,8 +81,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
+      <Time>2017-03-27T11:56:23.2420957-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
       <Time>2017-03-28T18:12:02.7435964-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>asteroid3.png</Source>
@@ -61,8 +95,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
+      <Time>2017-03-27T11:56:23.2889731-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
       <Time>2017-03-28T18:12:02.7592231-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>asteroid4.png</Source>
@@ -70,8 +109,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
+      <Time>2017-03-27T11:56:23.2264701-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
       <Time>2017-03-28T18:12:02.7748484-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>FarStar.png</Source>
@@ -79,8 +123,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
+      <Time>2017-03-27T11:56:23.1639679-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
       <Time>2017-03-28T18:12:02.6810911-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>NearStar.png</Source>
@@ -88,8 +137,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
+      <Time>2017-03-27T11:56:23.3202246-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
       <Time>2017-03-28T18:12:02.7123431-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>rocket.png</Source>
@@ -97,8 +151,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2017-03-27T11:56:23.2577213-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+<<<<<<< HEAD
       <Time>2017-03-29T14:42:14.8469909-06:00</Time>
+=======
+      <Time>2017-03-28T18:12:03.0717373-06:00</Time>
+>>>>>>> origin/master
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>lives.png</Source>
@@ -106,8 +169,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
+      <Time>2017-03-27T11:56:23.367102-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
+<<<<<<< HEAD
       <Time>2017-03-29T20:46:54.2908562-06:00</Time>
+=======
+      <Time>2017-03-28T18:12:02.9936078-06:00</Time>
+>>>>>>> origin/master
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>asteroidDot.png</Source>
@@ -115,8 +187,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1843374-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
       <Time>2017-03-28T18:12:02.7904722-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>enemyDot.png</Source>
@@ -124,8 +201,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1873396-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
       <Time>2017-03-28T18:12:02.9779814-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>carrier.png</Source>
@@ -133,8 +215,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-03-27T13:43:42.1853382-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
       <Time>2017-03-28T18:12:02.931106-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>minimap.png</Source>
@@ -142,8 +229,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
+      <Time>2017-03-27T13:43:42.1903414-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
       <Time>2017-03-28T18:12:03.0404857-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>carrierDot.png</Source>
@@ -151,6 +243,10 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
+<<<<<<< HEAD
+      <Output>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
+      <Time>2017-03-27T13:43:42.1863391-06:00</Time>
+=======
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
       <Time>2017-03-28T18:12:02.9623576-06:00</Time>
     </Item>
@@ -171,6 +267,7 @@
       <Options>None</Options>
       <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb</Output>
       <Time>2017-03-28T22:54:40.5577078-06:00</Time>
+>>>>>>> origin/master
     </Item>
     <Item>
       <Source>crosshairs.png</Source>
@@ -188,10 +285,17 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
+<<<<<<< HEAD
+      <RootDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
+=======
       <RootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
       <LoggerRootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
       <IntermediateDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
       <OutputDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
+>>>>>>> origin/master
     </Settings>
     <Assemblies>
       <Assembly>
