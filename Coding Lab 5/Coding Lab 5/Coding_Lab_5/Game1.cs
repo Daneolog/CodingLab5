@@ -49,7 +49,7 @@ namespace Coding_Lab_5
 
             switch (ship.type)
             {
-                case "enemy": sSize = new Vector2(50, 50); break;
+                case "enemy": sSize = new Vector2(36, 39); break;
                 default: sSize = Vector2.Zero; break;
             }
 
