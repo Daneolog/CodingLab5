@@ -1,5 +1,5 @@
 Content\GameFont.xnb
-Content\background.xnb
+Content\TitleFont.xnb
 Content\bullet.xnb
 Content\laser.xnb
 Content\asteroid1.xnb
@@ -15,5 +15,10 @@ Content\enemyDot.xnb
 Content\carrier.xnb
 Content\minimap.xnb
 Content\carrierDot.xnb
-Content\TitleFont.xnb
 Content\bigcarrier.xnb
+Content\crosshairs.xnb
+Content\enemy_spy.xnb
+Content\Explosion.xnb
+Content\PewPew.xnb
+Content\Thrusters.xnb
+Content\background.xnb
