@@ -53,7 +53,7 @@ namespace Coding_Lab_5
                 {
                     case "spy": sSize = new Vector2(36, 39); break;
                     case "fighter": sSize = new Vector2(45, 39); break;
-                    case "scout": sSize = new Vector2(36, 39); break;
+                    case "scout": sSize = new Vector2(36, 34); break;
                     default: sSize = Vector2.Zero; break;
                 }
             }
@@ -288,6 +288,8 @@ namespace Coding_Lab_5
             asteroidTexture4 = Content.Load<Texture2D>("asteroid4");
             crosshairsTexture = Content.Load<Texture2D>("crosshairs");
             spyTexture = Content.Load<Texture2D>("enemy_spy");
+            fighterTexture = Content.Load<Texture2D>("enemy_fighter");
+            scoutTexture = Content.Load<Texture2D>("enemy_scout");
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
             background = Content.Load<SoundEffect>("background");
@@ -605,10 +607,10 @@ namespace Coding_Lab_5
                 Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X),
                     randomizer.Next(0, (int)fullWindow.Y));
 
-                switch (randomizer.Next(0, 10))
+                switch (randomizer.Next(0, 6))
                 {
-                    case 0: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "spy")); break;
-                    case 1: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "spy")); break;
+                    case 0: case 1: case 2: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "scout")); break;
+                    case 3: case 4: case 5: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "fighter")); break;
                     default: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "spy")); break;
                 }
             }

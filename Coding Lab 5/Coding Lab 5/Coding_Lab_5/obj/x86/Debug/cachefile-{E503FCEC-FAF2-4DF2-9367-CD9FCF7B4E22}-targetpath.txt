@@ -18,7 +18,9 @@ Content\carrierDot.xnb
 Content\bigcarrier.xnb
 Content\crosshairs.xnb
 Content\enemy_spy.xnb
-Content\Explosion.xnb
+Content\explosion.xnb
 Content\PewPew.xnb
-Content\Thrusters.xnb
+Content\thrusters.xnb
 Content\background.xnb
+Content\enemy_fighter.xnb
+Content\enemy_scout.xnb
