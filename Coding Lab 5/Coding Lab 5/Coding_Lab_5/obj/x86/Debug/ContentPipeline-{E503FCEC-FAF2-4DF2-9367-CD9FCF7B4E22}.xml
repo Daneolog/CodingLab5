@@ -7,152 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2017-03-29T23:37:03.860017-06:00</Time>
-    </Item>
-    <Item>
-      <Source>background.png</Source>
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2017-03-29T23:37:04.0475262-06:00</Time>
-    </Item>
-    <Item>
-      <Source>bullet.png</Source>
-      <Name>bullet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
-      <Time>2017-03-29T23:37:04.0787778-06:00</Time>
-    </Item>
-    <Item>
-      <Source>laser.png</Source>
-      <Name>laser</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2017-03-29T23:37:04.1881582-06:00</Time>
-    </Item>
-    <Item>
-      <Source>asteroid1.png</Source>
-      <Name>asteroid1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
-      <Time>2017-03-29T23:37:03.9381458-06:00</Time>
-    </Item>
-    <Item>
-      <Source>asteroid2.png</Source>
-      <Name>asteroid2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
-      <Time>2017-03-29T23:37:03.9537722-06:00</Time>
-    </Item>
-    <Item>
-      <Source>asteroid3.png</Source>
-      <Name>asteroid3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
-      <Time>2017-03-29T23:37:03.9693978-06:00</Time>
-    </Item>
-    <Item>
-      <Source>asteroid4.png</Source>
-      <Name>asteroid4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
-      <Time>2017-03-29T23:37:04.0162746-06:00</Time>
-    </Item>
-    <Item>
-      <Source>FarStar.png</Source>
-      <Name>FarStar</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
-      <Time>2017-03-29T23:37:03.8443907-06:00</Time>
-    </Item>
-    <Item>
-      <Source>NearStar.png</Source>
-      <Name>NearStar</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
-      <Time>2017-03-29T23:37:03.8756423-06:00</Time>
-    </Item>
-    <Item>
-      <Source>rocket.png</Source>
-      <Name>rocket</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
-      <Time>2017-03-29T23:37:04.3287906-06:00</Time>
-    </Item>
-    <Item>
-      <Source>lives.png</Source>
-      <Name>lives</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
-      <Time>2017-03-29T23:37:04.2037842-06:00</Time>
-    </Item>
-    <Item>
-      <Source>asteroidDot.png</Source>
-      <Name>asteroidDot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
-      <Time>2017-03-29T23:37:04.0319003-06:00</Time>
-    </Item>
-    <Item>
-      <Source>enemyDot.png</Source>
-      <Name>enemyDot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
-      <Time>2017-03-29T23:37:04.1569066-06:00</Time>
-    </Item>
-    <Item>
-      <Source>carrier.png</Source>
-      <Name>carrier</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
-      <Time>2017-03-29T23:37:04.0944038-06:00</Time>
-    </Item>
-    <Item>
-      <Source>minimap.png</Source>
-      <Name>minimap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
-      <Time>2017-03-29T23:37:04.2194102-06:00</Time>
-    </Item>
-    <Item>
-      <Source>carrierDot.png</Source>
-      <Name>carrierDot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
-      <Time>2017-03-29T23:37:04.1256554-06:00</Time>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Time>2017-04-12T15:54:34.2597256-06:00</Time>
     </Item>
     <Item>
       <Source>TitleFont.spritefont</Source>
@@ -160,8 +16,143 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb</Output>
-      <Time>2017-03-29T23:37:03.9225199-06:00</Time>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb</Output>
+      <Time>2017-04-12T15:54:26.6052604-06:00</Time>
+    </Item>
+    <Item>
+      <Source>bullet.png</Source>
+      <Name>bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb</Output>
+      <Time>2017-04-12T15:54:34.3787266-06:00</Time>
+    </Item>
+    <Item>
+      <Source>laser.png</Source>
+      <Name>laser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb</Output>
+      <Time>2017-04-12T15:54:34.4351082-06:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroid1.png</Source>
+      <Name>asteroid1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb</Output>
+      <Time>2017-04-12T15:54:34.2887447-06:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroid2.png</Source>
+      <Name>asteroid2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb</Output>
+      <Time>2017-04-12T15:54:34.3047532-06:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroid3.png</Source>
+      <Name>asteroid3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb</Output>
+      <Time>2017-04-12T15:54:34.3217675-06:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroid4.png</Source>
+      <Name>asteroid4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb</Output>
+      <Time>2017-04-12T15:54:34.3357754-06:00</Time>
+    </Item>
+    <Item>
+      <Source>FarStar.png</Source>
+      <Name>FarStar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb</Output>
+      <Time>2017-04-12T15:54:34.2417136-06:00</Time>
+    </Item>
+    <Item>
+      <Source>NearStar.png</Source>
+      <Name>NearStar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb</Output>
+      <Time>2017-04-12T15:54:34.2747336-06:00</Time>
+    </Item>
+    <Item>
+      <Source>rocket.png</Source>
+      <Name>rocket</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb</Output>
+      <Time>2017-04-12T15:54:34.4770858-06:00</Time>
+    </Item>
+    <Item>
+      <Source>lives.png</Source>
+      <Name>lives</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb</Output>
+      <Time>2017-04-12T15:54:34.4490672-06:00</Time>
+    </Item>
+    <Item>
+      <Source>asteroidDot.png</Source>
+      <Name>asteroidDot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb</Output>
+      <Time>2017-04-12T15:54:34.3503021-06:00</Time>
+    </Item>
+    <Item>
+      <Source>enemyDot.png</Source>
+      <Name>enemyDot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb</Output>
+      <Time>2017-04-12T15:54:34.4207545-06:00</Time>
+    </Item>
+    <Item>
+      <Source>carrier.png</Source>
+      <Name>carrier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb</Output>
+      <Time>2017-04-12T15:54:34.3917372-06:00</Time>
+    </Item>
+    <Item>
+      <Source>minimap.png</Source>
+      <Name>minimap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb</Output>
+      <Time>2017-04-12T15:54:34.4630765-06:00</Time>
+    </Item>
+    <Item>
+      <Source>carrierDot.png</Source>
+      <Name>carrierDot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb</Output>
+      <Time>2017-04-12T15:54:34.4057447-06:00</Time>
     </Item>
     <Item>
       <Source>bigcarrier.png</Source>
@@ -169,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb</Output>
-      <Time>2017-03-29T23:37:04.0631536-06:00</Time>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb</Output>
+      <Time>2017-04-12T15:54:27.0191344-06:00</Time>
     </Item>
     <Item>
       <Source>crosshairs.png</Source>
@@ -178,8 +169,80 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\crosshairs.xnb</Output>
-      <Time>2017-03-29T23:37:04.141281-06:00</Time>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\crosshairs.xnb</Output>
+      <Time>2017-04-12T15:54:27.2933005-06:00</Time>
+    </Item>
+    <Item>
+      <Source>enemy_spy.png</Source>
+      <Name>enemy_spy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_spy.xnb</Output>
+      <Time>2017-04-12T15:54:27.4590643-06:00</Time>
+    </Item>
+    <Item>
+      <Source>enemy_fighter.png</Source>
+      <Name>enemy_fighter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_fighter.xnb</Output>
+      <Time>2017-04-12T15:54:27.3743322-06:00</Time>
+    </Item>
+    <Item>
+      <Source>enemy_scout.png</Source>
+      <Name>enemy_scout</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_scout.xnb</Output>
+      <Time>2017-04-12T15:54:27.4271938-06:00</Time>
+    </Item>
+    <Item>
+      <Source>tExplosion.png</Source>
+      <Name>tExplosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\tExplosion.xnb</Output>
+      <Time>2017-04-14T13:08:45.1967235-06:00</Time>
+    </Item>
+    <Item>
+      <Source>explosion.wav</Source>
+      <Name>explosion</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\explosion.xnb</Output>
+      <Time>2017-04-12T15:54:27.5292414-06:00</Time>
+    </Item>
+    <Item>
+      <Source>PewPew.wav</Source>
+      <Name>PewPew</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\PewPew.xnb</Output>
+      <Time>2017-04-12T15:54:26.3571622-06:00</Time>
+    </Item>
+    <Item>
+      <Source>thrusters.wav</Source>
+      <Name>thrusters</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\thrusters.xnb</Output>
+      <Time>2017-04-12T15:54:27.7090063-06:00</Time>
+    </Item>
+    <Item>
+      <Source>background.wav</Source>
+      <Name>background</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2017-04-12T15:54:26.9851178-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -188,10 +251,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Daneolog\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

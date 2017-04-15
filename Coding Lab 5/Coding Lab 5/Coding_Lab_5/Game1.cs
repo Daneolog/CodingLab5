@@ -47,11 +47,17 @@ namespace Coding_Lab_5
                 default: pSize = Vector2.Zero; break;
             }
 
-            switch (ship.type)
+            if (ship.type == "enemy")
             {
-                case "enemy": sSize = new Vector2(36, 39); break;
-                default: sSize = Vector2.Zero; break;
+                switch (ship.enemyType)
+                {
+                    case "spy": sSize = new Vector2(36, 39); break;
+                    case "fighter": sSize = new Vector2(45, 39); break;
+                    case "scout": sSize = new Vector2(36, 34); break;
+                    default: sSize = Vector2.Zero; break;
+                }
             }
+            else sSize = Vector2.Zero;
 
             return projectile.position.X <= ship.position.X + sSize.X &&
                 projectile.position.X + pSize.X >= ship.position.X &&
@@ -194,9 +200,11 @@ namespace Coding_Lab_5
         List<Ship> enemies;
         List<Asteroid> asteroids;
         List<Vector2> nStars, fStars;
+        List<SpriteSheet> explosions;
         SpriteFont titleFont, gameFont;
         ButtonState lastDownState, lastUpState;
         KeyboardState lastKeyboardState;
+        SoundEffect background, explosion, PewPew, thrusters;
         int gunState = 1;
         double[] cooldowns;
         double[] ammo;
@@ -206,8 +214,9 @@ namespace Coding_Lab_5
 
         // texture files
         Texture2D carrierTexture, bigCarrierTexture, nStarTexture, fStarTexture, livesTexture,
-            enemyTexture, minimapTexture, enemyDot, asteroidDot, carrierDot, asteroidTexture1,
-            asteroidTexture2, asteroidTexture3, asteroidTexture4, crosshairsTexture;
+            minimapTexture, enemyDot, asteroidDot, carrierDot, asteroidTexture1, asteroidTexture2,
+            asteroidTexture3, asteroidTexture4, crosshairsTexture, spyTexture, fighterTexture,
+            scoutTexture, explosionTexture;
 
         public Game1()
         {
@@ -233,6 +242,7 @@ namespace Coding_Lab_5
             asteroids = new List<Asteroid>();
             nStars = new List<Vector2>();
             fStars = new List<Vector2>();
+            explosions = new List<SpriteSheet>();
             cooldowns = new double[4];
             ammo = new double[3];
 
@@ -270,7 +280,6 @@ namespace Coding_Lab_5
             nStarTexture = Content.Load<Texture2D>("NearStar");
             fStarTexture = Content.Load<Texture2D>("FarStar");
             livesTexture = Content.Load<Texture2D>("lives");
-            enemyTexture = Content.Load<Texture2D>("carrier");
             minimapTexture = Content.Load<Texture2D>("minimap");
             enemyDot = Content.Load<Texture2D>("enemyDot");
             asteroidDot = Content.Load<Texture2D>("asteroidDot");
@@ -280,8 +289,20 @@ namespace Coding_Lab_5
             asteroidTexture3 = Content.Load<Texture2D>("asteroid3");
             asteroidTexture4 = Content.Load<Texture2D>("asteroid4");
             crosshairsTexture = Content.Load<Texture2D>("crosshairs");
+            spyTexture = Content.Load<Texture2D>("enemy_spy");
+            fighterTexture = Content.Load<Texture2D>("enemy_fighter");
+            scoutTexture = Content.Load<Texture2D>("enemy_scout");
+            explosionTexture = Content.Load<Texture2D>("tExplosion");
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
+            background = Content.Load<SoundEffect>("background");
+            explosion = Content.Load<SoundEffect>("explosion");
+            PewPew = Content.Load<SoundEffect>("PewPew");
+            thrusters = Content.Load<SoundEffect>("thrusters");
+            
+            SoundEffectInstance instance = background.CreateInstance();
+            instance.IsLooped = true;
+            instance.Play();
 
             // TODO: use this.Content to load your game content here
         }
@@ -353,7 +374,11 @@ namespace Coding_Lab_5
                     carrier.angle = (int)(Math.Atan2(GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.Y,
                     GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X) * 180 / Math.PI);
 
-                if (GamePad.GetState(PlayerIndex.One).Triggers.Left >= 0.01f) carrier.speed = boostSpeed;
+                if (GamePad.GetState(PlayerIndex.One).Triggers.Left >= 0.1f)
+                {
+                    thrusters.Play(GamePad.GetState(PlayerIndex.One).Triggers.Left / 20, 0f, 0f);
+                    carrier.speed = boostSpeed;
+                }
                 else { if (carrier.speed >= carrierSpeed) carrier.speed -= 0.1f; }
                 #endregion
 
@@ -365,6 +390,8 @@ namespace Coding_Lab_5
                 {
                     if (gunState == 1 && cooldowns[0] <= 0) // shoot bullet
                     {
+                        PewPew.Play(0.23f, 0f, 0f);
+
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
                             new Vector2(24, 24);
@@ -373,19 +400,31 @@ namespace Coding_Lab_5
                         bullets.Add(new Projectile("bullet", position, angle));
                         cooldowns[0] = gunCooldown;
                     }
-                    else if (gunState == 2 && cooldowns[1] <= 0 && ammo[0] >= 1) // shoot rocket
+                    else if (gunState == 2 && cooldowns[1] <= 0 && ammo[0] > 1) // shoot rocket
                     {
+                        PewPew.Play(0.23f, 0f, 0f);
+
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
                             new Vector2(24, 24);
                         int angle = carrier.angle;
 
+                        for (int i = 0; i < bullets.Count; i++)
+                            for (int j = 0; j < enemies.Count; j++)
+                            {
+                                if (closestEnemy == null) closestEnemy = enemies[j];
+                                else if (distance(bullets[i], enemies[j]) < distance(bullets[i], closestEnemy))
+                                    closestEnemy = enemies[j];
+                            }
+
                         bullets.Add(new Projectile("rocket", position, angle));
                         cooldowns[1] = rocketCooldown;
                         ammo[0]--;
                     }
-                    else if (gunState == 3 && cooldowns[2] <= 0 && ammo[1] >= 1)
+                    else if (gunState == 3 && cooldowns[2] <= 0 && ammo[1] > 1)
                     {
+                        PewPew.Play(0.23f, 0f, 0f);
+
                         Vector2 position = carrier.position +
                             new Vector2(carrierTexture.Width, carrierTexture.Height) / 2 -
                             new Vector2(24, 24);
@@ -402,8 +441,10 @@ namespace Coding_Lab_5
                         cooldowns[2] = arCooldown;
                         ammo[1]--;
                     }
-                    else if (gunState == 4 && cooldowns[3] <= 0 && ammo[2] >= 1)
+                    else if (gunState == 4 && cooldowns[3] <= 0 && ammo[2] > 1)
                     {
+                        PewPew.Play(0.23f, 0f, 0f);
+
                         laserCharge += 0.1;
 
                         if (laserCharge >= chargeTime - 0.1)
@@ -427,6 +468,9 @@ namespace Coding_Lab_5
                     // enemy vs player
                     if (i < enemies.Count && collide(carrier, enemies[i]))
                     {
+                        explosion.Play(0.5f, 0f, 0f);
+                        explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
+
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
                         if (lives == 0) state = 4;
@@ -441,6 +485,9 @@ namespace Coding_Lab_5
                     {
                         if (i < enemies.Count && j < bullets.Count && collide(bullets[j], enemies[i]))
                         {
+                            explosion.Play(0.5f, 0f, 0f);
+                            explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
+
                             enemies.RemoveAt(i);
                             if (bullets[j].type != "laser") bullets.RemoveAt(j);
                         }
@@ -451,6 +498,8 @@ namespace Coding_Lab_5
                     {
                         if (i < enemies.Count && j < asteroids.Count && collide(asteroids[j], enemies[i]))
                         {
+                            explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
+
                             enemies.RemoveAt(i);
                             asteroids.RemoveAt(j);
                         }
@@ -462,6 +511,9 @@ namespace Coding_Lab_5
                     // asteroid vs player
                     if (i < asteroids.Count && collide(asteroids[i], carrier))
                     {
+                        explosion.Play(0.5f, 0f, 0f);
+                        explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
+
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
                         if (lives == 0) state = 4;
@@ -476,6 +528,9 @@ namespace Coding_Lab_5
                     {
                         if (i < asteroids.Count && j < bullets.Count && collide(bullets[j], asteroids[i]))
                         {
+                            explosion.Play(0.5f, 0f, 0f);
+                            explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
+
                             asteroids.RemoveAt(i);
                             bullets.RemoveAt(j);
                         }
@@ -507,12 +562,18 @@ namespace Coding_Lab_5
             else if (state == 3)
             {
                 if (lastKeyboardState.IsKeyDown(Keys.Space) && Keyboard.GetState().IsKeyUp(Keys.Space) ||
-                    GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed) state = 2;
+                    GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed &&
+                    vibrationPower == 0)
+                {
+                    state = 2;
+                    enemies.RemoveRange(0, enemies.Count);
+                }
             }
             else if (state == 4)
             {
                 if (lastKeyboardState.IsKeyDown(Keys.Space) && Keyboard.GetState().IsKeyUp(Keys.Space) ||
-                    GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                    GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed &&
+                    vibrationPower == 0)
                 {
                     state = 1;
                     lives = 5;
@@ -531,20 +592,14 @@ namespace Coding_Lab_5
                 Vector2 position = bullets[i].position - camera.window;
 
                 if (bullets[i].type == "rocket") // home rockets
-                {
-                    for (int j = 0; j < enemies.Count; j++)
-                    {
-                        if (closestEnemy == null) closestEnemy = enemies[j];
-                        else if (distance(bullets[i], enemies[j]) < distance(bullets[i], closestEnemy))
-                            closestEnemy = enemies[j];
-                    }
-
-                    if (enemies.Count > 0) bullets[i].angle = home(bullets[i].angle, (int)angle(bullets[i], closestEnemy));
-                }
+                    if (enemies.Count > 0 && closestEnemy != null)
+                        bullets[i].angle = home(bullets[i].angle, (int)angle(bullets[i], closestEnemy));
 
                 bullets[i].Move();
                 if (bullets[i].type == "bullet" && (position.X + 8 <= 0 || position.X >= windowSize.X ||
                     position.Y + 20 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
+                else if (bullets[i].type == "rocket" && (position.X + 12 <= 0 || position.X >= windowSize.X ||
+                    position.Y + 18 <= 0 || position.Y >= windowSize.Y)) bullets.RemoveAt(i);
                 else if (bullets[i].type == "laser" && (position.X + 20 <= 0 || position.X >= windowSize.X ||
                     position.Y + 20 <= 0 || position.Y + 500 >= windowSize.Y)) bullets.RemoveAt(i);
             }
@@ -556,12 +611,17 @@ namespace Coding_Lab_5
             if (vibrationPower > 0) vibrationPower -= 0.005f;
             if (vibrationPower < 0) vibrationPower = 0;
 
-            if (enemies.Count() < numEnemies && timer % 10 == 0)
+            if (enemies.Count() < numEnemies && timer % 20 == 0)
             {
                 Vector2 position = new Vector2(randomizer.Next(0, (int)fullWindow.X),
                     randomizer.Next(0, (int)fullWindow.Y));
 
-                enemies.Add(new Ship("enemy", position, (int)angle(carrier, position)));
+                switch (randomizer.Next(0, 6))
+                {
+                    case 0: case 1: case 2: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "scout")); break;
+                    case 3: case 4: case 5: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "fighter")); break;
+                    default: enemies.Add(new Ship("enemy", position, (int)angle(carrier, position), "spy")); break;
+                }
             }
 
             lastDownState = GamePad.GetState(PlayerIndex.One).DPad.Down;
@@ -569,6 +629,7 @@ namespace Coding_Lab_5
             lastKeyboardState = Keyboard.GetState();
 
             GamePad.SetVibration(PlayerIndex.One, vibrationPower, vibrationPower);
+            foreach (SpriteSheet explosion in explosions) explosion.Update(timer, 3);
             timer++;
             base.Update(gameTime);
         }
@@ -617,7 +678,15 @@ namespace Coding_Lab_5
                     camera.Draw(carrierTexture, carrier.position, carrier.angle, spriteBatch);
 
                     // draw enemy ships
-                    foreach (Ship enemy in enemies) camera.Draw(enemyTexture, enemy.position, enemy.angle, spriteBatch);
+                    foreach (Ship enemy in enemies)
+                    {
+                        switch (enemy.enemyType)
+                        {
+                            case "spy": camera.Draw(spyTexture, enemy.position, enemy.angle, spriteBatch); break;
+                            case "fighter": camera.Draw(fighterTexture, enemy.position, enemy.angle, spriteBatch); break;
+                            case "scout": camera.Draw(scoutTexture, enemy.position, enemy.angle, spriteBatch); break;
+                        }
+                    }
 
                     // draw asteroids
                     foreach (Asteroid asteroid in asteroids)
@@ -640,6 +709,9 @@ namespace Coding_Lab_5
                     spriteBatch.DrawString(gameFont, "game over x-(", new Vector2(100, 100), Color.White);
                 }
 
+                foreach (SpriteSheet explosion in explosions)
+                    explosion.Draw(spriteBatch, camera.window, Content.Load<Texture2D>("tExplosion"));
+
                 // draw lives
                 for (int i = 0; i < lives; i++)
                 {
@@ -653,7 +725,7 @@ namespace Coding_Lab_5
                     drawRectangle(new Vector2(windowSize.X / 2 - 70, windowSize.Y - 40),
                         new Vector2(130, 30), Color.Red, Color.White);
                     drawRectangle(new Vector2(windowSize.X / 2 - 69, windowSize.Y - 39),
-                            new Vector2((float)ammo[gunState - 2] / maxAmmo * 128, 28), Color.Green, Color.Green);
+                            new Vector2((float)ammo[gunState - 2] / maxAmmo * 128 + 1, 28), Color.Green, Color.Green);
                     spriteBatch.DrawString(gameFont, "" + Math.Round(ammo[gunState - 2], 0),
                         new Vector2(windowSize.X / 2 - 10, windowSize.Y - 38), Color.White);
                 }
@@ -709,12 +781,38 @@ namespace Coding_Lab_5
         }
     }
 
+    public class SpriteSheet
+    {
+        Vector2 position;
+        Vector2 spriteSize;
+        public int index;
+
+        public SpriteSheet(Vector2 nPosition, Vector2 nSpriteSize)
+        {
+            position = nPosition;
+            spriteSize = nSpriteSize;
+            index = 0;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 window, Texture2D texture)
+        {
+            Rectangle rectangle = new Rectangle((int)(index * spriteSize.X), 0, (int)spriteSize.X, (int)spriteSize.Y);
+            spriteBatch.Draw(texture, position - window, rectangle, Color.White);
+        }
+
+        public void Update(long timer, int fps)
+        {
+            if (timer % fps == 0) index++;
+        }
+    }
+
     public class Ship
     {
         // gameplay mechanics
         public const int enemySpeed = 6;
 
         public string type;
+        public string enemyType;
         public float speed;
         public Vector2 position;
         public Vector2 velocity;
@@ -725,8 +823,15 @@ namespace Coding_Lab_5
             type = newType;
             position = newPosition;
             angle = newAngle;
+        }
 
-            if (type == "enemy") speed = enemySpeed;
+        public Ship(string newType, Vector2 newPosition, int newAngle, string newEnemyType)
+        {
+            type = newType;
+            position = newPosition;
+            angle = newAngle;
+            speed = enemySpeed;
+            enemyType = newEnemyType;
         }
 
         public void Move()
@@ -741,8 +846,8 @@ namespace Coding_Lab_5
     public class Projectile
     {
         // projectile mechanics
-        public const int bulletSpeed = 10;
-        public const int rocketSpeed = 7;
+        public const int bulletSpeed = 14;
+        public const int rocketSpeed = 10;
 
         public string type;
         public float speed;
