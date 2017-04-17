@@ -331,7 +331,7 @@ namespace Coding_Lab_5
             if (state == 1)
             {
                 ButtonState downState = GamePad.GetState(PlayerIndex.One).DPad.Down;
-                ButtonState upState = GamePad.GetState(PlayerIndex.One).DPad.Down;
+                ButtonState upState = GamePad.GetState(PlayerIndex.One).DPad.Up;
 
                 if (menuChoice < 3 &&
                     ((lastDownState == ButtonState.Pressed && downState == ButtonState.Released) ||
@@ -539,7 +539,7 @@ namespace Coding_Lab_5
                 #endregion
 
                 if (GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.D1)) gunState = 1;
+                    Keyboard.GetState().IsKeyDown(Keys.D1)) gunState = 1;
                 else if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed ||
                     Keyboard.GetState().IsKeyDown(Keys.D2)) gunState = 2;
                 else if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed ||
