@@ -216,7 +216,11 @@ namespace Coding_Lab_5
         Texture2D carrierTexture, bigCarrierTexture, nStarTexture, fStarTexture, livesTexture,
             minimapTexture, enemyDot, asteroidDot, carrierDot, asteroidTexture1, asteroidTexture2,
             asteroidTexture3, asteroidTexture4, crosshairsTexture, spyTexture, fighterTexture,
+<<<<<<< HEAD
             scoutTexture, explosionTexture;
+=======
+            scoutTexture;
+>>>>>>> origin/master
 
         public Game1()
         {
@@ -292,7 +296,10 @@ namespace Coding_Lab_5
             spyTexture = Content.Load<Texture2D>("enemy_spy");
             fighterTexture = Content.Load<Texture2D>("enemy_fighter");
             scoutTexture = Content.Load<Texture2D>("enemy_scout");
+<<<<<<< HEAD
             explosionTexture = Content.Load<Texture2D>("tExplosion");
+=======
+>>>>>>> origin/master
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
             background = Content.Load<SoundEffect>("background");
@@ -469,7 +476,10 @@ namespace Coding_Lab_5
                     if (i < enemies.Count && collide(carrier, enemies[i]))
                     {
                         explosion.Play(0.5f, 0f, 0f);
+<<<<<<< HEAD
                         explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
+=======
+>>>>>>> origin/master
 
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
@@ -486,7 +496,10 @@ namespace Coding_Lab_5
                         if (i < enemies.Count && j < bullets.Count && collide(bullets[j], enemies[i]))
                         {
                             explosion.Play(0.5f, 0f, 0f);
+<<<<<<< HEAD
                             explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
+=======
+>>>>>>> origin/master
 
                             enemies.RemoveAt(i);
                             if (bullets[j].type != "laser") bullets.RemoveAt(j);
@@ -512,7 +525,10 @@ namespace Coding_Lab_5
                     if (i < asteroids.Count && collide(asteroids[i], carrier))
                     {
                         explosion.Play(0.5f, 0f, 0f);
+<<<<<<< HEAD
                         explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
+=======
+>>>>>>> origin/master
 
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
@@ -529,7 +545,10 @@ namespace Coding_Lab_5
                         if (i < asteroids.Count && j < bullets.Count && collide(bullets[j], asteroids[i]))
                         {
                             explosion.Play(0.5f, 0f, 0f);
+<<<<<<< HEAD
                             explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
+=======
+>>>>>>> origin/master
 
                             asteroids.RemoveAt(i);
                             bullets.RemoveAt(j);
