@@ -216,11 +216,7 @@ namespace Coding_Lab_5
         Texture2D carrierTexture, bigCarrierTexture, nStarTexture, fStarTexture, livesTexture,
             minimapTexture, enemyDot, asteroidDot, carrierDot, asteroidTexture1, asteroidTexture2,
             asteroidTexture3, asteroidTexture4, crosshairsTexture, spyTexture, fighterTexture,
-<<<<<<< HEAD
-            scoutTexture, explosionTexture;
-=======
-            scoutTexture;
->>>>>>> origin/master
+            scoutTexture, explosionTexture, hudTexture;
 
         public Game1()
         {
@@ -296,10 +292,8 @@ namespace Coding_Lab_5
             spyTexture = Content.Load<Texture2D>("enemy_spy");
             fighterTexture = Content.Load<Texture2D>("enemy_fighter");
             scoutTexture = Content.Load<Texture2D>("enemy_scout");
-<<<<<<< HEAD
             explosionTexture = Content.Load<Texture2D>("tExplosion");
-=======
->>>>>>> origin/master
+            hudTexture = Content.Load<Texture2D>("hud");
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
             background = Content.Load<SoundEffect>("background");
@@ -338,7 +332,7 @@ namespace Coding_Lab_5
             if (state == 1)
             {
                 ButtonState downState = GamePad.GetState(PlayerIndex.One).DPad.Down;
-                ButtonState upState = GamePad.GetState(PlayerIndex.One).DPad.Up;
+                ButtonState upState = GamePad.GetState(PlayerIndex.One).DPad.Down;
 
                 if (menuChoice < 3 &&
                     ((lastDownState == ButtonState.Pressed && downState == ButtonState.Released) ||
@@ -476,10 +470,7 @@ namespace Coding_Lab_5
                     if (i < enemies.Count && collide(carrier, enemies[i]))
                     {
                         explosion.Play(0.5f, 0f, 0f);
-<<<<<<< HEAD
                         explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
-=======
->>>>>>> origin/master
 
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
@@ -496,10 +487,7 @@ namespace Coding_Lab_5
                         if (i < enemies.Count && j < bullets.Count && collide(bullets[j], enemies[i]))
                         {
                             explosion.Play(0.5f, 0f, 0f);
-<<<<<<< HEAD
                             explosions.Add(new SpriteSheet(enemies[i].position, new Vector2(37, 40)));
-=======
->>>>>>> origin/master
 
                             enemies.RemoveAt(i);
                             if (bullets[j].type != "laser") bullets.RemoveAt(j);
@@ -525,10 +513,7 @@ namespace Coding_Lab_5
                     if (i < asteroids.Count && collide(asteroids[i], carrier))
                     {
                         explosion.Play(0.5f, 0f, 0f);
-<<<<<<< HEAD
                         explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
-=======
->>>>>>> origin/master
 
                         lives--;
                         carrier.position = new Vector2(fullWindow.X / 2, fullWindow.Y - 2000);
@@ -545,10 +530,7 @@ namespace Coding_Lab_5
                         if (i < asteroids.Count && j < bullets.Count && collide(bullets[j], asteroids[i]))
                         {
                             explosion.Play(0.5f, 0f, 0f);
-<<<<<<< HEAD
                             explosions.Add(new SpriteSheet(asteroids[i].position, new Vector2(37, 40)));
-=======
->>>>>>> origin/master
 
                             asteroids.RemoveAt(i);
                             bullets.RemoveAt(j);
@@ -558,7 +540,7 @@ namespace Coding_Lab_5
                 #endregion
 
                 if (GamePad.GetState(PlayerIndex.One).Buttons.B == ButtonState.Pressed ||
-                    Keyboard.GetState().IsKeyDown(Keys.D1)) gunState = 1;
+                Keyboard.GetState().IsKeyDown(Keys.D1)) gunState = 1;
                 else if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed ||
                     Keyboard.GetState().IsKeyDown(Keys.D2)) gunState = 2;
                 else if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed ||
@@ -731,22 +713,23 @@ namespace Coding_Lab_5
                 foreach (SpriteSheet explosion in explosions)
                     explosion.Draw(spriteBatch, camera.window, Content.Load<Texture2D>("tExplosion"));
 
-                // draw lives
-                for (int i = 0; i < lives; i++)
-                {
-                    Vector2 position = new Vector2(i * 40, windowSize.Y / 2);
-                    spriteBatch.Draw(livesTexture, new Vector2(i * 35 + 20, windowSize.Y - 40), Color.White);
-                }
+                // draw hud
+                spriteBatch.Draw(hudTexture, new Vector2(0, 572), Color.White);
+
+                // draw health
+                drawRectangle(new Vector2(15, windowSize.Y - 35), new Vector2(120, 25), Color.Red, Color.White);
+                drawRectangle(new Vector2(16, windowSize.Y - 34), new Vector2(lives * 118/5, 23), Color.Blue, Color.Blue);
+                spriteBatch.DrawString(gameFont, "HP: " + lives * 20 + "/100", new Vector2(20, windowSize.Y - 33), Color.White);
 
                 // draw ammo bar
                 if (gunState != 1)
                 {
-                    drawRectangle(new Vector2(windowSize.X / 2 - 70, windowSize.Y - 40),
-                        new Vector2(130, 30), Color.Red, Color.White);
-                    drawRectangle(new Vector2(windowSize.X / 2 - 69, windowSize.Y - 39),
-                            new Vector2((float)ammo[gunState - 2] / maxAmmo * 128 + 1, 28), Color.Green, Color.Green);
-                    spriteBatch.DrawString(gameFont, "" + Math.Round(ammo[gunState - 2], 0),
-                        new Vector2(windowSize.X / 2 - 10, windowSize.Y - 38), Color.White);
+                    drawRectangle(new Vector2(windowSize.X - 135, windowSize.Y - 35),
+                        new Vector2(120, 25), Color.Red, Color.White);
+                    drawRectangle(new Vector2(windowSize.X - 134, windowSize.Y - 34),
+                            new Vector2((float)ammo[gunState - 2] / maxAmmo * 118, 23), Color.Green, Color.Green);
+                    spriteBatch.DrawString(gameFont, "AMMO: " + Math.Round(ammo[gunState - 2], 0) + "/5",
+                        new Vector2(windowSize.X - 125, windowSize.Y - 33), Color.White);
                 }
 
                 // draw laser charge bar
@@ -763,12 +746,12 @@ namespace Coding_Lab_5
                 }
 
                 // draw minimap
-                spriteBatch.Draw(minimapTexture, new Vector2(500, 500), Color.White);
-                foreach (Asteroid asteroid in asteroids) spriteBatch.Draw(asteroidDot, toMinimap(asteroid.position), Color.White);
-                foreach (Ship enemy in enemies) spriteBatch.Draw(enemyDot, toMinimap(enemy.position), Color.White);
-                spriteBatch.Draw(carrierDot, toMinimap(carrier.position), Color.White);
+                //spriteBatch.Draw(minimapTexture, new Vector2(500, 500), Color.White);
+                //foreach (Asteroid asteroid in asteroids) spriteBatch.Draw(asteroidDot, toMinimap(asteroid.position), Color.White);
+                //foreach (Ship enemy in enemies) spriteBatch.Draw(enemyDot, toMinimap(enemy.position), Color.White);
+                //spriteBatch.Draw(carrierDot, toMinimap(carrier.position), Color.White);
 
-                spriteBatch.DrawString(gameFont, "" + gunState, new Vector2(windowSize.X / 2 - 130, windowSize.Y - 38), Color.White);
+                //spriteBatch.DrawString(gameFont, "" + gunState, new Vector2(windowSize.X / 2 - 130, windowSize.Y - 38), Color.White);
             }
 
             spriteBatch.End();

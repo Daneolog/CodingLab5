@@ -18,18 +18,11 @@ Content\carrierDot.xnb
 Content\bigcarrier.xnb
 Content\crosshairs.xnb
 Content\enemy_spy.xnb
-<<<<<<< HEAD
 Content\enemy_fighter.xnb
 Content\enemy_scout.xnb
 Content\tExplosion.xnb
-=======
->>>>>>> origin/master
+Content\hud.xnb
 Content\explosion.xnb
 Content\PewPew.xnb
 Content\thrusters.xnb
 Content\background.xnb
-<<<<<<< HEAD
-=======
-Content\enemy_fighter.xnb
-Content\enemy_scout.xnb
->>>>>>> origin/master

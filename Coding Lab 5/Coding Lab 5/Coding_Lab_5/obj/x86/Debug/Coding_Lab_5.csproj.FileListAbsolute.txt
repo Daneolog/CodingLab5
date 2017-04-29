@@ -250,7 +250,6 @@ C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Codi
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_fighter.xnb
 C:\Users\Julian Ochoa\Documents\GitHub\CodingLab5\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_scout.xnb
-<<<<<<< HEAD
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb
@@ -273,5 +272,47 @@ C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_L
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\explosion.xnb
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\PewPew.xnb
 C:\Users\Daneolog\OneDrive\Documents\IWKS3400\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\thrusters.xnb
-=======
->>>>>>> origin/master
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\GameFont.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\TitleFont.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bullet.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\laser.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid1.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid2.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid3.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroid4.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\FarStar.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\NearStar.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\rocket.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\lives.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\asteroidDot.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemyDot.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrier.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\minimap.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\carrierDot.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\bigcarrier.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\crosshairs.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_spy.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_fighter.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\enemy_scout.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\tExplosion.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\hud.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\explosion.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\PewPew.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\thrusters.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Content\background.xnb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Coding_Lab_5.exe
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Coding_Lab_5.pdb
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.csprojResolveAssemblyReference.cache
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.exe
+C:\Users\Inworks_User\Downloads\Coding Lab 5\Coding Lab 5\Coding_Lab_5\obj\x86\Debug\Coding_Lab_5.pdb
